@@ -290,35 +290,21 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row"  >
 					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
+					<div class="col-lg-3 col-md-6" th:each="product : ${products}">
 						<div class="single-product">
-							<a href="single-product.html"><img class="img-fluid" th:src="@{/img/product/p1.jpg}" alt=""></a>
+							<a href="single-product.html"><img class="img-fluid" th:src="${product.urlImageThumnail}" alt=""></a>
 							<div class="product-details">
-								<h6><a href="single-product.html">addidas New Hammer sole
-									for Sports person</a></h6>
+								<h6><a href="single-product.html"><p th:text="${product.name}" /></a></h6>
 								<div class="price">
-									<h6>$150.00</h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6><p th:text="${product.price * (1 - product.percentDiscount)}" /></h6>
+									<h6 class="l-through"><p th:text="${product.price}" /></h6>
 								</div>
 								<div class="prd-bottom">
-
 									<a href="cart.html" class="social-info">
 										<span class="ti-bag"></span>
 										<p class="hover-text">add to bag</p>
-									</a>
-									<a href="" class="social-info">
-										<span class="lnr lnr-heart"></span>
-										<p class="hover-text">Wishlist</p>
-									</a>
-									<a href="" class="social-info">
-										<span class="lnr lnr-sync"></span>
-										<p class="hover-text">compare</p>
-									</a>
-									<a href="" class="social-info">
-										<span class="lnr lnr-move"></span>
-										<p class="hover-text">view more</p>
 									</a>
 								</div>
 							</div>
