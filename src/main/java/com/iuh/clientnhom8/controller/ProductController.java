@@ -30,7 +30,7 @@ public class ProductController {
         return "index";
     }
 
-    @GetMapping("/productId={id}")
+    @GetMapping("/{id}")
     public String getById(Model model, @PathVariable("id") String id) {
         model.addAttribute("product", productService.getProductById(id));
         return "single-product";

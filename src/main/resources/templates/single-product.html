@@ -139,7 +139,6 @@
 				<div class="col-lg-5 offset-lg-1" >
 					<div class="s_product_text">
 						<h3><p th:text="${product.name}" /></h3>
-						<h6 class="l-through"><p th:text="${product.price}" /></h6>
 						<h2><p th:text="${product.price * (1 - product.percentDiscount)}" /></h2>
 						<ul class="list">
 							<li><a class="active" href="#"><span>Category</span> <p th:text="${product.type.name}" /></a></li>
