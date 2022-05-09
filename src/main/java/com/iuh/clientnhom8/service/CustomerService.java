@@ -15,12 +15,15 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class CustomerService {
 	
-	@Autowired
-	private RestTemplate restTemplate;
+	private final RestTemplate restTemplate;
 	
 	@Value("${url_customer}")
 	private String requestUrl;
-	
+
+	public CustomerService(RestTemplate restTemplate) {
+		this.restTemplate = restTemplate;
+	}
+
 	public List<Customer> getAllCustomer() {
 		ResponseEntity<List<Customer>> response = restTemplate.exchange(requestUrl, HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<Customer>>() {
