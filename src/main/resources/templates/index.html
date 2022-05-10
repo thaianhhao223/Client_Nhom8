@@ -298,8 +298,7 @@
 							<div class="product-details">
 								<h6><a th:href="@{'/products/' + ${product.id}}"><p th:text="${product.name}" /></a></h6>
 								<div class="price">
-									<h6><p th:text="${product.price * (1 - product.percentDiscount)}" /></h6>
-									<h6 class="l-through"><p th:text="${product.price}" /></h6>
+									<h6><p th:text="${product.price}" /></h6>đ
 								</div>
 								<div class="prd-bottom">
 									<a href="cart.html" class="social-info">

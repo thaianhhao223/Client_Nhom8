@@ -1,15 +1,15 @@
 package com.iuh.clientnhom8.controller;
 
 import com.iuh.clientnhom8.base.request.BasePageAndSortRequest;
+import com.iuh.clientnhom8.entity.Cart;
 import com.iuh.clientnhom8.entity.Product;
 import com.iuh.clientnhom8.service.ProductService;
-import org.springframework.data.domain.Page;
+import com.iuh.clientnhom8.utils.Utils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -23,7 +23,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/home")
+    @RequestMapping("/")
     public String getAllCustomer(Model model, BasePageAndSortRequest basePageAndSortRequest) {
         List<Product> products = productService.getAllProduct(basePageAndSortRequest);
         model.addAttribute("products", products);
@@ -34,5 +34,20 @@ public class ProductController {
     public String getById(Model model, @PathVariable("id") String id) {
         model.addAttribute("product", productService.getProductById(id));
         return "single-product";
+    }
+
+    @RequestMapping({ "/buyProduct" })
+    public String listProductHandler(HttpServletRequest request, Model model,
+                                     @RequestParam(value = "id", defaultValue = "") String id) {
+        logger.info("buyProduct?id="+id);
+        Product product = null;
+        if (id != null && id.length() > 0) {
+            product = productService.getProductById(id);
+        }
+        if (product != null) {
+            Cart cartInfo = Utils.getCartInSession(request);
+            cartInfo.addProduct(product, 1);
+        }
+        return "redirect:/shoppingCart";
     }
 }

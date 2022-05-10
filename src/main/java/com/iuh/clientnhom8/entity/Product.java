@@ -11,13 +11,17 @@ import lombok.*;
 public class Product {
 	private String id;
     private String name;
+    private String description;
     private Integer size;
     private Integer stock; //Số lượng tồn
-    private Long price;
-    private Float percentDiscount;
+    private Double price;
     private ProductType type;
     private ProductBrand brand;
     private String urlImageThumnail;
     private List<String> listImageDetail;
     private Boolean status;
+
+    public double getAmount() {
+        return this.price;
+    }
 }
