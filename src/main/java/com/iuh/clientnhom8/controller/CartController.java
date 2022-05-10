@@ -44,14 +44,25 @@ public class CartController {
         return "redirect:/shoppingCart";
     }
 
-    @GetMapping("/shoppingCart")
+    @RequestMapping(value = {"/shoppingCart"}, method = RequestMethod.GET)
     public String shoppingCartHandler(HttpServletRequest request, Model model) {
-        logger.info("shoppingCart");
         Cart myCart = Utils.getCartInSession(request);
         Cart cartForm = Utils.getCartInSession(request);
 
         model.addAttribute("cartForm", myCart); // lấy thông tin giỏ hàng load lên form
         model.addAttribute("myCart", cartForm); // lấy thông tin từ form để có thông tin giỏ hàng cuối cùng
         return "cart";
+    }
+
+    @RequestMapping(value = { "/cart-checkout" }, method = RequestMethod.GET)
+    public String checkout(HttpServletRequest request, Model model) {
+        Cart cartInfo = Utils.getCartInSession(request);
+
+        if (cartInfo == null || cartInfo.isEmpty()) {
+            return "redirect:/shoppingCart";
+        }
+        // TODO: bổ sung thông tin khách info khách hàng
+        model.addAttribute("myCart", cartInfo);
+        return "checkout";
     }
 }

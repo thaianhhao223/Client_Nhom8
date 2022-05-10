@@ -36,14 +36,17 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public String getById(Model model, @PathVariable("id") String id) {
-        model.addAttribute("product", productService.getProductById(id));
+        Product product = null;
+        if (id != null && id.length() > 0) {
+            product = productService.getProductById(id);
+        }
+        model.addAttribute("product", product);
         return "single-product";
     }
 
     @RequestMapping({ "/buyProduct" })
     public String listProductHandler(HttpServletRequest request, Model model,
                                      @RequestParam(value = "id", defaultValue = "") String id) {
-        logger.info("buyProduct?id="+id);
         Product product = null;
         if (id != null && id.length() > 0) {
             product = productService.getProductById(id);
