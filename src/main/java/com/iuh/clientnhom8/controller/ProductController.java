@@ -3,6 +3,7 @@ package com.iuh.clientnhom8.controller;
 import com.iuh.clientnhom8.base.request.BasePageAndSortRequest;
 import com.iuh.clientnhom8.entity.Cart;
 import com.iuh.clientnhom8.entity.Product;
+
 import com.iuh.clientnhom8.service.ProductService;
 import com.iuh.clientnhom8.utils.Utils;
 import org.springframework.stereotype.Controller;
@@ -19,14 +20,17 @@ public class ProductController {
     private Logger logger = Logger.getLogger(getClass().getName());
     private ProductService productService;
 
+
     public ProductController(ProductService productService) {
         this.productService = productService;
+
     }
 
     @RequestMapping("/")
-    public String getAllCustomer(Model model, BasePageAndSortRequest basePageAndSortRequest) {
+    public String getAllProduct(Model model, BasePageAndSortRequest basePageAndSortRequest) {
         List<Product> products = productService.getAllProduct(basePageAndSortRequest);
         model.addAttribute("products", products);
+
         return "index";
     }
 
