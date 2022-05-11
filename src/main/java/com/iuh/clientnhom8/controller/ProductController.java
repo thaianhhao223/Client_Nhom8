@@ -27,15 +27,24 @@ public class ProductController {
     }
 
     @RequestMapping("/")
-    public String getAllProduct(Model model, BasePageAndSortRequest basePageAndSortRequest) {
+    public String getAllProduct(HttpServletRequest request, Model model, BasePageAndSortRequest basePageAndSortRequest) {
         List<Product> products = productService.getAllProduct(basePageAndSortRequest);
         model.addAttribute("products", products);
+        return "index";
+    }
 
+    @RequestMapping(value = {"/category"}, method = RequestMethod.POST)
+    public String getAllProduct(HttpServletRequest request, Model model, @RequestParam("pageNumber") String pageNumber) {
+        Integer pageNo = Integer.parseInt(pageNumber);
+        BasePageAndSortRequest basePageAndSortRequest = new BasePageAndSortRequest();
+        basePageAndSortRequest.setPageNumber(pageNo);
+        List<Product> products = productService.getAllProduct(basePageAndSortRequest);
+        model.addAttribute("products", products);
         return "index";
     }
 
     @GetMapping("/{id}")
-    public String getById(Model model, @PathVariable("id") String id) {
+    public String getById(HttpServletRequest request, Model model, @PathVariable("id") String id) {
         Product product = null;
         if (id != null && id.length() > 0) {
             product = productService.getProductById(id);

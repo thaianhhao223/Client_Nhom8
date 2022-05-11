@@ -26,10 +26,11 @@ public class ProductService {
     }
 
     public List<Product> getAllProduct(BasePageAndSortRequest basePageAndSortRequest){
-        if (basePageAndSortRequest.getPageNumber() == null || basePageAndSortRequest.getPageSize() == null
-        || basePageAndSortRequest.getSort() == null){
-            basePageAndSortRequest.setPageSize(12);
+        if (basePageAndSortRequest.getPageNumber() == null){
             basePageAndSortRequest.setPageNumber(0);
+        }
+        if (basePageAndSortRequest.getPageSize() == null){
+            basePageAndSortRequest.setPageSize(12);
         }
         ResponseEntity<ProductPageResponse> response = restTemplate.postForEntity(requestUrl + "/get-all", basePageAndSortRequest, ProductPageResponse.class);
         return response.getBody().getProductList();
