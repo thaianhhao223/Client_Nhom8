@@ -1,5 +1,6 @@
 package com.iuh.clientnhom8.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +25,16 @@ public class Bill {
     private Float percentDiscount;
     private String paymentType;
     private String status;
+
+    public String getFormatDateDelivery(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        return dateFormat.format(dateDelivery);
+    }
+
+    public String getFormatDateSale(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:s");
+        return dateFormat.format(dateSale);
+    }
 
     public String getTotal(){
         return String.format("%.0f", totalPrice);

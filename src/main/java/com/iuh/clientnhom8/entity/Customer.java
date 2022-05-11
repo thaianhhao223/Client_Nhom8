@@ -20,4 +20,8 @@ public class Customer implements Serializable {
     private String phoneNumber;
     private String address;
     private String urlImage;
+
+    public String getName(){
+        return lastName + " " +firstName;
+    }
 }

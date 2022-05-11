@@ -80,12 +80,12 @@ public class Cart {
         return quantity;
     }
 
-    public double getAmountTotal() {
+    public String getAmountTotal() {
         double total = 0;
         for (ProductSale line : this.productList) {
-            total += line.getAmount();
+            total += line.getTotalAmount();
         }
-        return total;
+        return String.format("%.0f", total);
     }
 
     public void updateQuantity(Cart cartForm) {
