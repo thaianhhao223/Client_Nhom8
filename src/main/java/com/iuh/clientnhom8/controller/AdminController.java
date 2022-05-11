@@ -141,6 +141,25 @@ public class AdminController {
         CustomerExelExporter exporter = new CustomerExelExporter();
         exporter.export(customerList, response);
     }
+    @GetMapping("/type/export/exel")
+    public void exportToExelForProductType(HttpServletResponse response) throws IOException {
+        List<ProductType> productTypes = productTypeService.getAllProductType();
+        ProductTypeExelExporter exporter = new ProductTypeExelExporter();
+        exporter.export(productTypes, response);
+    }
+
+    @GetMapping("/brand/export/exel")
+    public void exportToExelForBrand(HttpServletResponse response) throws IOException {
+        List<ProductBrand> productBrands = productBrandService.getAllProductBrand();
+        ProductBrandExelExporter exporter = new ProductBrandExelExporter();
+        exporter.export(productBrands, response);
+    }
+    @GetMapping("/product/export/exel")
+    public void exportToExelForProduct(HttpServletResponse response) throws IOException {
+        List<Product> products = productService.getAllProduct(new BasePageAndSortRequest());
+        ProductExelExporter exporter = new ProductExelExporter();
+        exporter.export(products, response);
+    }
 
 
 }

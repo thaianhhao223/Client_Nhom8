@@ -14,13 +14,12 @@ import java.util.List;
 
 public class CustomerCsvExporter extends AbtractExporter{
     public void export (List<Customer> customerList, HttpServletResponse response) throws IOException {
-        super.setResponseHeader(response, "csv", "text/csv");
+        super.setResponseHeader(response,  "text/csv", ".csv");
         ICsvBeanWriter iCsvBeanWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
         String[]    csvHeader = {"Ma KH", "Ho", "Ten", "Email", "SDT", "Dia chi"};
         String[]    fieldMapping = {"id", "firstName", "lastName", "email", "phoneNumber", "address"};
         iCsvBeanWriter.writeHeader(csvHeader);
         for(Customer customer : customerList){
-
             iCsvBeanWriter.write(customer, fieldMapping);
         }
         iCsvBeanWriter.close();

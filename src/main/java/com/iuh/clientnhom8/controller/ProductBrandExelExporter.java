@@ -1,25 +1,23 @@
 package com.iuh.clientnhom8.controller;
 
-import com.iuh.clientnhom8.entity.Customer;
+import com.iuh.clientnhom8.entity.ProductBrand;
+import com.iuh.clientnhom8.entity.ProductType;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.xssf.usermodel.*;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
-public class CustomerExelExporter extends AbtractExporter{
+public class ProductBrandExelExporter extends AbtractExporter{
 private XSSFWorkbook workbook ;
        private XSSFSheet sheet;
-       public CustomerExelExporter(){
+       public ProductBrandExelExporter(){
            workbook = new XSSFWorkbook();
        }
     private void writeHeaderLine(){
-        sheet = workbook.createSheet("Customer");
+        sheet = workbook.createSheet("ProductBrand");
         XSSFRow row = sheet.createRow(0);
 
         XSSFCellStyle cellStyle = workbook.createCellStyle();
@@ -28,12 +26,8 @@ private XSSFWorkbook workbook ;
         font.setFontHeight(16);
         cellStyle.setFont(font);
 
-        createCell(row, 0, "Ma KH", cellStyle);
-        createCell(row, 1, "Ho", cellStyle);
-        createCell(row, 2, "Ten", cellStyle);
-        createCell(row, 3, "SDT", cellStyle);
-        createCell(row, 4, "Email", cellStyle);
-        createCell(row, 5, "Dia chi", cellStyle);
+        createCell(row, 0, "Ma TH", cellStyle);
+        createCell(row, 1, "Ten TH", cellStyle);
     }
     private void createCell(XSSFRow row, int columIndex, Object value, CellStyle style){
         XSSFCell cell = row.createCell(columIndex);
@@ -48,32 +42,28 @@ private XSSFWorkbook workbook ;
         cell.setCellStyle(style);
 
     }
-    public void export (List<Customer> customerList, HttpServletResponse response) throws IOException {
+    public void export (List<ProductBrand> productBrands, HttpServletResponse response) throws IOException {
        super.setResponseHeader(response, "application/octet-stream", ".xlsx");
         writeHeaderLine();
-        writeDataLines(customerList);
+        writeDataLines(productBrands);
         ServletOutputStream outputStream = response.getOutputStream();
         workbook.write(outputStream);
         workbook.close();
         outputStream.close();
     }
 
-    private void writeDataLines(List<Customer> customerList) {
+    private void writeDataLines(List<ProductBrand> productBrands) {
            int rowIndex = 1;
             XSSFCellStyle cellStyle = workbook.createCellStyle();
             XSSFFont font = workbook.createFont();
             font.setBold(true);
-            font.setFontHeight(13);
+            font.setFontHeight(12);
             cellStyle.setFont(font);
-           for (Customer customer : customerList){
+           for (ProductBrand productBrand : productBrands){
                XSSFRow row = sheet.createRow(rowIndex++);
                int columnIndex = 0;
-               createCell(row, columnIndex++, customer.getId(), cellStyle);
-               createCell(row, columnIndex++, customer.getFirstName(), cellStyle);
-               createCell(row, columnIndex++, customer.getLastName(), cellStyle);
-               createCell(row, columnIndex++, customer.getEmail(), cellStyle);
-               createCell(row, columnIndex++, customer.getPhoneNumber(), cellStyle);
-               createCell(row, columnIndex++, customer.getAddress(), cellStyle);
+               createCell(row, columnIndex++, productBrand.getId(), cellStyle);
+               createCell(row, columnIndex++, productBrand.getName(), cellStyle);
            }
     }
 
