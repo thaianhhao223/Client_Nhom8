@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin-test-ui")
 public class TestUiAdminController {
     @GetMapping("/home")
     public String homeAdmin(){

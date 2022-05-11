@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -647,10 +647,10 @@
                         </th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody th:each="tepmproductbrand : ${productbrand}">
                       <tr>
                         <td>
-                          <p class="text-sm font-weight-bold mb-0">1</p>
+                          <p class="text-sm font-weight-bold mb-0" th:text="${productbrand.indexOf(tepmproductbrand)+1}">1</p>
                         </td>
                         <td>
                           <div class="d-flex px-2">
@@ -658,11 +658,10 @@
                               <img
                                 src="../assets/img/theme/logoAdidas.png"
                                 class="avatar avatar-sm rounded-circle me-2"
-                                alt="spotify"
                               />
                             </div>
                             <div class="my-auto">
-                              <h6 class="mb-0 text-sm">Adidas</h6>
+                              <h6 class="mb-0 text-sm" th:text="${tepmproductbrand.name}"></h6>
                             </div>
                           </div>
                         </td>

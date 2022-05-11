@@ -3,9 +3,8 @@ package com.iuh.clientnhom8.controller;
 import com.iuh.clientnhom8.base.request.BasePageAndSortRequest;
 import com.iuh.clientnhom8.entity.Product;
 import com.iuh.clientnhom8.request.customer.CreateCustomerRequest;
-import com.iuh.clientnhom8.service.AdminService;
+import com.iuh.clientnhom8.service.*;
 
-import com.iuh.clientnhom8.service.CustomerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,19 +21,60 @@ public class AdminController {
 
     private AdminService adminService;
     private CustomerService customerService;
+    private ProductService productService;
+    private ProductTypeService productTypeService;
+    private ProductBrandService productBrandService;
+    private BillService billService;
 
-
-    public AdminController(AdminService adminService, CustomerService customerService) {
+    public AdminController(AdminService adminService, CustomerService customerService, ProductService productService, ProductTypeService productTypeService, ProductBrandService productBrandService, BillService billService) {
         this.adminService = adminService;
         this.customerService = customerService;
+        this.productService = productService;
+        this.productTypeService = productTypeService;
+        this.productBrandService = productBrandService;
+        this.billService = billService;
     }
 
-    @GetMapping("/list")
+    @GetMapping("/home")
+    public String homeAdmin(){
+        return "dashboard-admin";
+    }
+
+    @GetMapping("/account")
+    public String accountAdmin(){
+        return "account-admin";
+    }
+
+    @GetMapping("/customer")
     public String getAllCustomer(Model model) {
 
 //        model.addAttribute("customers", adminService.getAllCustomer());
         model.addAttribute("customers", customerService.getAllCustomer());
         return "customer-admin";
+    }
+
+    @GetMapping("/type")
+    public String typeAdmin(Model model){
+        model.addAttribute("producttype", productTypeService.getAllProductType());
+        return "type-admin";
+    }
+
+    @GetMapping("/brand")
+    public String brandAdmin(Model model){
+        model.addAttribute("productbrand", productBrandService.getAllProductBrand());
+        return "brand-admin";
+    }
+
+    @GetMapping("/product")
+    public String productAdmin(Model model){
+        model.addAttribute("products", productService.getAllProduct(new BasePageAndSortRequest()));
+        return "product-admin";
+    }
+
+    @GetMapping("/billing")
+    public String billAdmin(Model model){
+        model.addAttribute("bills", billService.getAllBill());
+        return "billing-admin";
     }
 
     @GetMapping("/getById={id}")
@@ -62,7 +102,7 @@ public class AdminController {
 
     @GetMapping("/{id}")
     public String getProductById(Model model, @PathVariable("id") String id) {
-        model.addAttribute("product", adminService.getProductById(id));
+//        model.addAttribute("product", adminService.getProductById(id));
         return "single-product";
     }
 

@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -663,14 +663,13 @@
                         </th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody th:each="tempbills : ${bills}">
                       <tr>
                         <td>
-                          <p class="text-sm font-weight-bold mb-0">1</p>
+                          <p class="text-sm font-weight-bold mb-0" th:text="${bills.indexOf(tempbills)+1}"></p>
                         </td>
                         <td>
-                          <p class="text-sm font-weight-bold mb-0">
-                            12-12-2022
+                          <p class="text-sm font-weight-bold mb-0" th:text="${tempbills.dateSale}">
                           </p>
                         </td>
                         <td>
@@ -687,9 +686,7 @@
                           <span class="text-xs font-weight-bold">COD</span>
                         </td>
                         <td class="align-middle">
-                          <span class="text-xs font-weight-bold"
-                            >250.000 VNĐ</span
-                          >
+                          <span class="text-xs font-weight-bold" th:text="${tempbills.totalPrice}">VNĐ</span>
                         </td>
                         <td class="align-middle">
                           <span class="text-xs font-weight-bold">
