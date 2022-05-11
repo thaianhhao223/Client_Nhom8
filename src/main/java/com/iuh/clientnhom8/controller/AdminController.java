@@ -1,39 +1,40 @@
 package com.iuh.clientnhom8.controller;
 
 import com.iuh.clientnhom8.base.request.BasePageAndSortRequest;
-import com.iuh.clientnhom8.entity.Cart;
 import com.iuh.clientnhom8.entity.Product;
 import com.iuh.clientnhom8.request.customer.CreateCustomerRequest;
 import com.iuh.clientnhom8.service.AdminService;
 
+import com.iuh.clientnhom8.service.CustomerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.logging.Logger;
 
 @Controller
-@RequestMapping("admin")
+@RequestMapping("/admin")
 public class AdminController {
     private Logger logger = Logger.getLogger(getClass().getName());
 
-    private final AdminService adminService;
+    private AdminService adminService;
+    private CustomerService customerService;
 
 
-
-    public AdminController(AdminService adminService) {
+    public AdminController(AdminService adminService, CustomerService customerService) {
         this.adminService = adminService;
+        this.customerService = customerService;
     }
 
     @GetMapping("/list")
     public String getAllCustomer(Model model) {
 
-        model.addAttribute("customers", adminService.getAllCustomer());
-        return "customer-list";
+//        model.addAttribute("customers", adminService.getAllCustomer());
+        model.addAttribute("customers", customerService.getAllCustomer());
+        return "customer-admin";
     }
 
     @GetMapping("/getById={id}")

@@ -25,7 +25,7 @@ public class CustomerService {
 	}
 
 	public List<Customer> getAllCustomer() {
-		ResponseEntity<List<Customer>> response = restTemplate.exchange(requestUrl, HttpMethod.GET, null,
+		ResponseEntity<List<Customer>> response = restTemplate.exchange(requestUrl+"list", HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<Customer>>() {
 				});
 		return response.getBody();

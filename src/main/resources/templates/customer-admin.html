@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -614,30 +614,27 @@
                         </th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody th:each="tempCustomer : ${customers}">
                       <tr>
                         <td>
                           <p class="text-sm font-weight-bold mb-0">1</p>
                         </td>
                         <td>
-                          <p class="text-sm font-weight-bold mb-0">
-                            10-03-2022
+                          <p class="text-sm font-weight-bold mb-0" th:text="${tempCustomer.email}">
                           </p>
                         </td>
                         <td>
-                          <span class="text-xs font-weight-bold"
-                            >Nguyen Anh Tuyet</span
-                          >
+                          <span class="text-xs font-weight-bold"  >
+                            <span th:text="${tempCustomer.firstName}"> </span>
+
+                            <span th:text="${tempCustomer.lastName}"> </span>
+                          </span>
                         </td>
                         <td class="align-middle text-center">
-                          <span class="text-xs font-weight-bold"
-                            >anhtuyet@gmail.com</span
-                          >
+                          <span class="text-xs font-weight-bold" th:text="${tempCustomer.email}"></span>
                         </td>
                         <td class="align-middle text-center">
-                          <span class="text-xs font-weight-bold"
-                            >0987666555</span
-                          >
+                          <span class="text-xs font-weight-bold" th:text="${tempCustomer.phoneNumber}"></span>
                         </td>
                         <td class="align-middle text-center">
 
