@@ -15,13 +15,30 @@ public class Product {
     private Integer size;
     private Integer stock; //Số lượng tồn
     private Double price;
+    private Float percentDiscount;
     private ProductType type;
     private ProductBrand brand;
     private String urlImageThumnail;
     private List<String> listImageDetail;
     private Boolean status;
 
+    public String getTypeName(){
+        return this.type.getName();
+    }
+
+    public String getBrandName(){
+        return this.brand.getName();
+    }
+
+    public String getAmountToString() {
+        return String.format("%.0f", getAmount());
+    }
+
+    public String getPriceToString() {
+        return String.format("%.0f", this.price);
+    }
+
     public double getAmount() {
-        return this.price;
+        return this.price * (1 - this.percentDiscount);
     }
 }

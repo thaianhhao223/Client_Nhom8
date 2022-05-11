@@ -124,36 +124,25 @@
 		<div class="container">
 			<h3 class="title_confirmation">Thank you. Your order has been received.</h3>
 			<div class="row order_d_inner">
-				<div class="col-lg-4">
+				<div class="col-lg-6">
 					<div class="details_item">
 						<h4>Order Info</h4>
 						<ul class="list">
-							<li><a href="#"><span>Order number</span> : <span th:utext="${bill.id}" /></a></li>
-							<li><a href="#"><span>Delivery Date</span> : <span th:utext="${bill.dateDelivery}" /></a></li>
-							<li><a href="#"><span>Total</span> : VND <span th:utext="${bill.total}" /></a></li>
-							<li><a href="#"><span>Payment method</span> : <span th:utext="${bill.paymentType}" /></a></li>
+							<li><a href="#"><span>Order number</span> : <span th:utext="${bill.id}"></span></a></li>
+							<li><a href="#"><span>Sale Date</span> : <span th:utext="${bill.formatDateSale}"></span></a></li>
+							<li><a href="#"><span>Delivery Date</span> : <span th:utext="${bill.formatDateDelivery}"></span></a></li>
+							<li><a href="#"><span>Payment method</span> : <span th:utext="${bill.paymentType}"></span></a></li>
 						</ul>
 					</div>
 				</div>
-				<div class="col-lg-4">
+				<div class="col-lg-6">
 					<div class="details_item">
-						<h4>Billing Address</h4>
+						<h4>Customer Info</h4>
 						<ul class="list">
-							<li><a href="#"><span>Street</span> : 56/8</a></li>
-							<li><a href="#"><span>City</span> : Los Angeles</a></li>
-							<li><a href="#"><span>Country</span> : United States</a></li>
-							<li><a href="#"><span>Postcode </span> : 36952</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="details_item">
-						<h4>Shipping Address</h4>
-						<ul class="list">
-							<li><a href="#"><span>Street</span> : 56/8</a></li>
-							<li><a href="#"><span>City</span> : Los Angeles</a></li>
-							<li><a href="#"><span>Country</span> : United States</a></li>
-							<li><a href="#"><span>Postcode </span> : 36952</a></li>
+							<li><a href="#"><span>Name</span> : <span th:utext="${bill.customer.name}"></span></a></li>
+							<li><a href="#"><span>Email</span> : <span th:utext="${bill.customer.email}"></span></a></li>
+							<li><a href="#"><span>Phone Number</span> : <span th:utext="${bill.customer.phoneNumber}"></span></a></li>
+							<li><a href="#"><span>Address </span> : <span th:utext="${bill.customer.address}"></span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -169,51 +158,20 @@
 								<th scope="col">Total</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody  th:each="productSale : ${bill.productList}">
 							<tr>
 								<td>
-									<p>Pixelstore fresh Blackberry</p>
+									<p th:utext="${productSale.product.name}"></p>
 								</td>
 								<td>
-									<h5>x 02</h5>
+									<h5>x <span th:utext="${productSale.quantity}"></span></h5>
 								</td>
 								<td>
-									<p>$720.00</p>
+									<p><span th:utext="${productSale.amount}"></span> VND</p>
 								</td>
 							</tr>
-							<tr>
-								<td>
-									<p>Pixelstore fresh Blackberry</p>
-								</td>
-								<td>
-									<h5>x 02</h5>
-								</td>
-								<td>
-									<p>$720.00</p>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<p>Pixelstore fresh Blackberry</p>
-								</td>
-								<td>
-									<h5>x 02</h5>
-								</td>
-								<td>
-									<p>$720.00</p>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<h4>Subtotal</h4>
-								</td>
-								<td>
-									<h5></h5>
-								</td>
-								<td>
-									<p>$2160.00</p>
-								</td>
-							</tr>
+						</tbody>
+						<tfoot>
 							<tr>
 								<td>
 									<h4>Shipping</h4>
@@ -222,7 +180,7 @@
 									<h5></h5>
 								</td>
 								<td>
-									<p>Flat rate: $50.00</p>
+									<p>Flat rate: 0 VND</p>
 								</td>
 							</tr>
 							<tr>
@@ -233,10 +191,10 @@
 									<h5></h5>
 								</td>
 								<td>
-									<p>$2210.00</p>
+									<p><span th:utext="${bill.total}"></span> VND</p>
 								</td>
 							</tr>
-						</tbody>
+						</tfoot>
 					</table>
 				</div>
 			</div>

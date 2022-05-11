@@ -296,14 +296,27 @@
 						<div class="single-product">
 							<a th:href="@{'/products/' + ${product.id}}"><img class="img-fluid" th:src="${product.urlImageThumnail}" alt=""></a>
 							<div class="product-details">
-								<h6><a th:href="@{'/products/' + ${product.id}}"><p th:text="${product.name}" /></a></h6>
+								<h6><a th:href="@{'/products/' + ${product.id}}"><span th:text="${product.name}"></span></a></h6>
 								<div class="price">
-									<h6><p th:text="${product.price}" /></h6>đ
+									<h6><span th:text="${product.amountToString}"></span> VND</h6>
+									<h6 class="l-through"><span th:text="${product.priceToString}"></span> VND</h6>
 								</div>
 								<div class="prd-bottom">
-									<a href="cart.html" class="social-info">
+									<a class="social-info" th:href="@{|/products/buyProduct?id=${product.id}|}">
 										<span class="ti-bag"></span>
 										<p class="hover-text">add to bag</p>
+									</a>
+									<a href="#" class="social-info">
+										<span class="lnr lnr-heart"></span>
+										<p class="hover-text">Wishlist</p>
+									</a>
+									<a href="#" class="social-info">
+										<span class="lnr lnr-sync"></span>
+										<p class="hover-text">compare</p>
+									</a>
+									<a href="#" class="social-info">
+										<span class="lnr lnr-move"></span>
+										<p class="hover-text">view more</p>
 									</a>
 								</div>
 							</div>

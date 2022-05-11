@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.text.SimpleDateFormat;
+
 @AllArgsConstructor
 @Setter
 @Getter
@@ -18,7 +20,11 @@ public class ProductSale {
         this.quantity = 0;
     }
 
-    public double getAmount() {
+    public double getTotalAmount() {
         return this.product.getAmount() * this.quantity;
+    }
+
+    public String getAmount(){
+        return String.format("%.0f", getTotalAmount());
     }
 }

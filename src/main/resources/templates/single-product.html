@@ -138,13 +138,13 @@
 				</div>
 				<div class="col-lg-5 offset-lg-1" >
 					<div class="s_product_text">
-						<h3><p th:text="${product.name}" /></h3>
-						<h2><p th:text="${product.price}" /></h2>
+						<h3><span th:text="${product.name}"></span></h3>
+						<h2><span th:text="${product.amountToString}"></span> VND</h2>
 						<ul class="list">
-							<li><a class="active" href="#"><span>Category</span> <p th:text="${product.type.name}" /></a></li>
-							<li><a href="#"><span>Availibility</span> : <p th:text="${product.stock}" /></a></li>
+							<li><a class="active" href="#"><span>Category</span> <span th:text="${product.typeName}"></span></a></li>
+							<li><a href="#"><span>Availibility</span> : <span th:text="${product.stock}"></span></a></li>
 						</ul>
-						<p th:text="${product.description}"/>
+						<p th:text="${product.description}"></p>
 						<div class="card_area d-flex align-items-center">
 							<a class="primary-btn" th:href="@{|/products/buyProduct?id=${product.id}|}">Add to Cart</a>
 							<a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
