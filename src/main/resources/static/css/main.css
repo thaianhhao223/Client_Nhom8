@@ -4565,10 +4565,9 @@ label {
     border-bottom: 1px solid #eeeeee;
     display: block;
     line-height: 42px; }
-    .order_box .list li a span {
-      float: right; }
+
     .order_box .list li a .middle {
-      float: none;
+      float: right;
       width: 50px;
       text-align: right;
       display: inline-block;
@@ -4581,8 +4580,15 @@ label {
     color: #222222;
     font-weight: 500; }
     .order_box .list_2 li a span {
-      color: #777777;
+      color: #222222;
       text-transform: capitalize; }
+    .order_box .list_2 li a .middle {
+      float: right;
+      width: 50px;
+      text-align: right;
+      display: inline-block;
+      margin-left: 30px;
+      color: #222222; }
   .order_box .list_2 li:last-child a span {
     color: #222222; }
   .order_box .payment_item h4 {

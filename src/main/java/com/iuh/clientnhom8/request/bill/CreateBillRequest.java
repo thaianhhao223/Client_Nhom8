@@ -1,5 +1,6 @@
 package com.iuh.clientnhom8.request.bill;
 
+import com.iuh.clientnhom8.entity.Customer;
 import com.iuh.clientnhom8.model.ProductSaleId;
 import lombok.*;
 
@@ -12,8 +13,7 @@ import java.util.List;
 @Getter
 @Builder
 public class CreateBillRequest {
-    private String customerId;
-    private String saleStaffId;
+    private Customer customer;
     private List<ProductSaleId> productSaleIdList;
     private Date dateDelivery;
     private Float percentDiscount;

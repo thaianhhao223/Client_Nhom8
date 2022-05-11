@@ -1,6 +1,7 @@
 package com.iuh.clientnhom8.controller;
 
 import com.iuh.clientnhom8.entity.Cart;
+import com.iuh.clientnhom8.entity.Customer;
 import com.iuh.clientnhom8.entity.Product;
 import com.iuh.clientnhom8.service.ProductService;
 import com.iuh.clientnhom8.utils.Utils;
@@ -62,6 +63,8 @@ public class CartController {
             return "redirect:/shoppingCart";
         }
         // TODO: bổ sung thông tin khách info khách hàng
+        Customer customer = new Customer();
+        model.addAttribute("customer", customer);
         model.addAttribute("myCart", cartInfo);
         return "checkout";
     }

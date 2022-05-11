@@ -34,10 +34,10 @@ public class HomeController {
 //    public String cart(){
 //        return "cart";
 //    }
-    @RequestMapping(value = "/checkout",method = RequestMethod.GET)
-    public String checkout(){
-        return "checkout";
-    }
+//    @RequestMapping(value = "/checkout",method = RequestMethod.GET)
+//    public String checkout(){
+//        return "checkout";
+//    }
 //    @RequestMapping(value = "/category",method = RequestMethod.GET)
 //    public String category(){
 //        return "category";

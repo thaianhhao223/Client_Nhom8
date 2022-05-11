@@ -20,8 +20,12 @@ public class Bill {
     private List<ProductSale> productList;
     private Date dateSale;
     private Date dateDelivery;
-    private Long totalPrice;
+    private Double totalPrice;
     private Float percentDiscount;
     private String paymentType;
     private String status;
+
+    public String getTotal(){
+        return String.format("%.0f", totalPrice);
+    }
 }

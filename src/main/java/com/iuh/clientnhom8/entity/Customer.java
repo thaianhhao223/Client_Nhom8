@@ -6,18 +6,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
 @Builder
-public class Customer {
-	private String id;
+public class Customer implements Serializable {
     private String firstName;
     private String lastName;
     private String email;
     private String phoneNumber;
     private String address;
     private String urlImage;
-    private Integer status;
 }
