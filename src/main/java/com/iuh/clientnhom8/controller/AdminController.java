@@ -135,6 +135,12 @@ public class AdminController {
         ProductCsvExporter exporter = new ProductCsvExporter();
         exporter.export(products, response);
     }
+    @GetMapping("/customers/export/exel")
+    public void exportToExelForCustomer(HttpServletResponse response) throws IOException {
+        List<Customer> customerList = customerService.getAllCustomer();
+        CustomerExelExporter exporter = new CustomerExelExporter();
+        exporter.export(customerList, response);
+    }
 
 
 }

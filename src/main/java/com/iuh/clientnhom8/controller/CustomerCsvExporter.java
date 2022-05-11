@@ -12,15 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class CustomerCsvExporter {
+public class CustomerCsvExporter extends AbtractExporter{
     public void export (List<Customer> customerList, HttpServletResponse response) throws IOException {
-        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
-        String timestamp = dateFormatter.format(new Date());
-        String fileName = "customers_" + timestamp +".csv";
-        response.setContentType("text/csv");
-        String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename="+ fileName;
-        response.setHeader(headerKey, headerValue);
+        super.setResponseHeader(response, "csv", "text/csv");
         ICsvBeanWriter iCsvBeanWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
         String[]    csvHeader = {"Ma KH", "Ho", "Ten", "Email", "SDT", "Dia chi"};
         String[]    fieldMapping = {"id", "firstName", "lastName", "email", "phoneNumber", "address"};
