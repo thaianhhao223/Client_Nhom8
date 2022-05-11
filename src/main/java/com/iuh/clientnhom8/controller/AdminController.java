@@ -1,6 +1,7 @@
 package com.iuh.clientnhom8.controller;
 
 import com.iuh.clientnhom8.base.request.BasePageAndSortRequest;
+import com.iuh.clientnhom8.entity.Customer;
 import com.iuh.clientnhom8.entity.Product;
 import com.iuh.clientnhom8.request.customer.CreateCustomerRequest;
 import com.iuh.clientnhom8.service.*;
@@ -10,7 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -45,7 +48,7 @@ public class AdminController {
         return "account-admin";
     }
 
-    @GetMapping("/customer")
+    @GetMapping("/customers")
     public String getAllCustomer(Model model) {
 
 //        model.addAttribute("customers", adminService.getAllCustomer());
@@ -100,12 +103,18 @@ public class AdminController {
         return "index";
     }
 
-    @GetMapping("/{id}")
-    public String getProductById(Model model, @PathVariable("id") String id) {
+//    @GetMapping("/{id}")
+//    public String getProductById(Model model, @PathVariable("id") String id) {
 //        model.addAttribute("product", adminService.getProductById(id));
-        return "single-product";
-    }
+//        return "single-product";
+//    }
 
+    @GetMapping("/customers/export/csv")
+    public void exportToCSV(HttpServletResponse response) throws IOException {
+        List<Customer> customerList = customerService.getAllCustomer();
+        CustomerCsvExporter exporter = new CustomerCsvExporter();
+        exporter.export(customerList, response);
+    }
 
 
 }

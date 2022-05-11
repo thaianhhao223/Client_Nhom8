@@ -74,7 +74,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" th:href="@{/admin/customer}">
+          <a class="nav-link active" th:href="@{/admin/customers}">
             <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
             >
@@ -562,7 +562,7 @@
               </div>
               <div class="card-header pb-0">
                 <div class="row mb-3">
-                  <div class="col-12">
+                  <div class="col-6">
                     <input
                       type="text"
                       class="form-control"
@@ -571,6 +571,24 @@
                       aria-describedby="inputGroup-sizing-default"
                     />
                   </div>
+                  <div class="col-2">
+                    <a th:href="@{/admin/customers/export/csv}"
+                       type="button"
+                       class="btn btn-success fs-15"
+                    >Export to csv</a>
+                  </div>
+                  <div class="col-2">
+                    <a th:href="@{/admin/customers/export/exel}"
+                       type="button"
+                       class="btn btn-success fs-15"
+                    >Export to exel</a>
+                  </div>
+                  <div class="col-2">
+                    <a th:href="@{/admin/customers/export/pdf}"
+                       type="button"
+                       class="btn btn-success fs-15"
+                    >Export to pdf</a>
+                    </div>
                 </div>
               </div>
 

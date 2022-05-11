@@ -14,6 +14,7 @@ import java.io.Serializable;
 @Getter
 @Builder
 public class Customer implements Serializable {
+    private String id;
     private String firstName;
     private String lastName;
     private String email;
