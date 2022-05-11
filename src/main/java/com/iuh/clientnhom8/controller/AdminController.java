@@ -3,6 +3,8 @@ package com.iuh.clientnhom8.controller;
 import com.iuh.clientnhom8.base.request.BasePageAndSortRequest;
 import com.iuh.clientnhom8.entity.Customer;
 import com.iuh.clientnhom8.entity.Product;
+import com.iuh.clientnhom8.entity.ProductBrand;
+import com.iuh.clientnhom8.entity.ProductType;
 import com.iuh.clientnhom8.request.customer.CreateCustomerRequest;
 import com.iuh.clientnhom8.service.*;
 
@@ -114,6 +116,24 @@ public class AdminController {
         List<Customer> customerList = customerService.getAllCustomer();
         CustomerCsvExporter exporter = new CustomerCsvExporter();
         exporter.export(customerList, response);
+    }
+    @GetMapping("/type/export/csv")
+    public void exportToCSVForType(HttpServletResponse response) throws IOException {
+        List<ProductType> productTypes = productTypeService.getAllProductType();
+        ProductTypeCsvExporter exporter = new ProductTypeCsvExporter();
+        exporter.export(productTypes, response);
+    }
+    @GetMapping("/brand/export/csv")
+    public void exportToCSVForBrand(HttpServletResponse response) throws IOException {
+        List<ProductBrand> productBrands = productBrandService.getAllProductBrand();
+        ProductBrandCsvExporter exporter = new ProductBrandCsvExporter();
+        exporter.export(productBrands, response);
+    }
+    @GetMapping("/product/export/csv")
+    public void exportToCSVForProduct(HttpServletResponse response) throws IOException {
+        List<Product> products = productService.getAllProduct(new BasePageAndSortRequest());
+        ProductCsvExporter exporter = new ProductCsvExporter();
+        exporter.export(products, response);
     }
 
 
