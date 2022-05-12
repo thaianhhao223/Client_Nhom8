@@ -161,5 +161,34 @@ public class AdminController {
         exporter.export(products, response);
     }
 
+    @GetMapping("/customers/create")
+    public String createCustomer(HttpServletResponse response) throws IOException {
+        return "customer-admin-create";
+
+    }
+    @GetMapping("/customers/update")
+    public String updateCustomer(HttpServletResponse response) throws IOException {
+        return "customer-admin-update";
+
+    }
+    @GetMapping("/product/create")
+    public String createProduct(HttpServletResponse response) throws IOException {
+        return "product-admin-create";
+
+    }
+    @GetMapping("/product/update")
+    public String updateProduct(HttpServletResponse response) throws IOException {
+        return "product-admin-update";
+
+    }
+    @GetMapping("/bill/create")
+    public String createBill(HttpServletResponse response) throws IOException {
+        return "bill-admin-create";
+    }
+
+    @GetMapping("/customers/customer-order")
+    public String getCustomerById(HttpServletResponse response) throws IOException {
+        return "customer-order-admin";
+    }
 
 }

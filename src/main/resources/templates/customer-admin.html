@@ -562,7 +562,7 @@
               </div>
               <div class="card-header pb-0">
                 <div class="row mb-3">
-                  <div class="col-6">
+                  <div class="col-4">
                     <input
                       type="text"
                       class="form-control"
@@ -590,9 +590,9 @@
                     >Export to pdf</a>
                     </div>
                   <div class="col-2">
-                    <a th:href="@{/admin/customers/export/pdf}"
+                    <a th:href="@{/admin/customers/create}"
                        type="button"
-                       class="btn btn-success fs-15"
+                       class="btn btn-danger fs-15"
                     >Thêm khách hàng</a>
                   </div>
                 </div>
@@ -662,9 +662,16 @@
                         </td>
                         <td class="align-middle text-center">
 
- <a class="text-xs font-weight-bold me-4 cursor-pointer text-decoration-none" th:href="@{customer/customer-order}">
+ <a class="text-xs font-weight-bold me-4 cursor-pointer text-decoration-none" th:href="@{customers/customer-order}">
                               <i class="fa-solid fa-eye"></i>
                             </a>
+
+                          <a th:href="@{/admin/customers/update}">
+                               <span class="text-xs font-weight-bold me-4 cursor-pointer" >
+                              <i class="fa-solid fa-user-pen"></i>
+                            </span>
+                          </a>
+
                           <span class="text-xs font-weight-bold cursor-pointer" data-toggle="modal"
                                 data-target="#detailProduct">
                               <i class="fa-solid fa-trash-can"></i>

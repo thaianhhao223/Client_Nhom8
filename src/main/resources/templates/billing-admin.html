@@ -594,17 +594,25 @@
                       placeholder="Tìm kiếm bằng số điện thoại"
                     />
                   </div>
-                  <div class="col-3">
+                  <div class="col-2">
                     <select
                       class="form-select"
                       aria-label="Default select example"
                     >
                       <option selected>Trạng thái</option>
-                      <option value="1">Đang chờ xác nhận</option>
-                      <option value="2">Đang xử lý</option>
-                      <option value="3">Đã nhận</option>
-                      <option value="3">Hủy</option>
+                      <option value="1">Hóa đơn chưa thanh toán</option>
+                      <option value="2">Hóa đơn đã thanh toán</option>
                     </select>
+                  </div>
+                  <div class="col-2">
+                    <a th:href="@{/admin/bill/create}">
+                      <button
+                              class="btn btn-danger"
+                              style="background-color: #344767"
+                      >
+                        + Thêm hóa đơn
+                      </button>
+                    </a>
                   </div>
                 </div>
               </div>
