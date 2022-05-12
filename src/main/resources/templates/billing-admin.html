@@ -651,11 +651,11 @@
                         >
                           Trạng thái
                         </th>
-                        <th
-                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center"
-                        >
-                          Action
-                        </th>
+<!--                        <th-->
+<!--                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center"-->
+<!--                        >-->
+<!--                          Action-->
+<!--                        </th>-->
                         <th
                           class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center"
                         >
@@ -673,40 +673,31 @@
                           </p>
                         </td>
                         <td>
-                          <span class="text-xs font-weight-bold"
-                            >400/9d Ấp Chánh 1, Tân Xuân, Hóc Môn</span
-                          >
+                          <span class="text-xs font-weight-bold" th:text="${tempbills.getCustomer().address}"></span>
                         </td>
                         <td class="align-middle">
-                          <span class="text-xs font-weight-bold"
-                            >0987888777</span
-                          >
+                          <span class="text-xs font-weight-bold" th:text="${tempbills.getCustomer().phoneNumber}"></span>
                         </td>
                         <td class="align-middle">
-                          <span class="text-xs font-weight-bold">COD</span>
+                          <span class="text-xs font-weight-bold" th:text="${tempbills.paymentType}"></span>
                         </td>
                         <td class="align-middle">
                           <span class="text-xs font-weight-bold" th:text="${tempbills.totalPrice}">VNĐ</span>
                         </td>
                         <td class="align-middle">
                           <span class="text-xs font-weight-bold">
-                            <span class="badge bg-success py-1 px-2"
-                              >Đang chờ xác nhận</span
-                            >
+                            <span class="badge bg-success py-1 px-2" th:text="${tempbills.status}"></span>
                           </span>
                         </td>
-                        <td class="align-middle text-center">
-                          <select
-                            class="form-select form-select-sm"
-                            aria-label="Default select example"
-                          >
-                            <option selected>Trạng thái</option>
-                            <option value="1">Đang chờ xác nhận</option>
-                            <option value="2">Đang xử lý</option>
-                            <option value="3">Đã nhận</option>
-                            <option value="3">Hủy</option>
-                          </select>
-                        </td>
+<!--                        <td class="align-middle text-center">-->
+<!--                          <select class="form-select form-select-sm" aria-label="Default select example">-->
+<!--                            <option selected>Trạng thái</option>-->
+<!--                            <option value="1">Đang chờ xác nhận</option>-->
+<!--                            <option value="2">Đang xử lý</option>-->
+<!--                            <option value="3">Đã nhận</option>-->
+<!--                            <option value="3">Hủy</option>-->
+<!--                          </select>-->
+<!--                        </td>-->
                         <td class="align-middle text-center">
                           <a href="#"
                             ><span class="text-xs font-weight-bold">

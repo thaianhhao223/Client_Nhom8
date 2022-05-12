@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,6 +22,8 @@ public class Customer implements Serializable {
     private String phoneNumber;
     private String address;
     private String urlImage;
+    private Date birthDate;
+    private Date createdDate;
 
     public String getName(){
         return lastName + " " +firstName;
