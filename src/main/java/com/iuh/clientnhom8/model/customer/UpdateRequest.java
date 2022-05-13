@@ -1,4 +1,4 @@
-package com.iuh.clientnhom8.model;
+package com.iuh.clientnhom8.model.customer;
 
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -14,7 +14,7 @@ import java.util.Date;
 @Builder
 @ToString
 @Generated
-public class CustomerRequest implements Serializable {
+public class UpdateRequest implements Serializable {
     private static final long serialVersionUID = 7581709400470270054L;
     private String firstName;
     private String lastName;
