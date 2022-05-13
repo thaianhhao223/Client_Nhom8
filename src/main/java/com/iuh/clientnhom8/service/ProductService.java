@@ -2,15 +2,12 @@ package com.iuh.clientnhom8.service;
 
 import com.iuh.clientnhom8.base.request.BasePageAndSortRequest;
 import com.iuh.clientnhom8.entity.Product;
-import com.iuh.clientnhom8.response.ProductPageResponse;
+import com.iuh.clientnhom8.response.ProductListResponse;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.data.domain.Page;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -32,7 +29,7 @@ public class ProductService {
         if (basePageAndSortRequest.getPageSize() == null){
             basePageAndSortRequest.setPageSize(12);
         }
-        ResponseEntity<ProductPageResponse> response = restTemplate.postForEntity(requestUrl + "/get-all", basePageAndSortRequest, ProductPageResponse.class);
+        ResponseEntity<ProductListResponse> response = restTemplate.postForEntity(requestUrl + "/get-all", basePageAndSortRequest, ProductListResponse.class);
         return response.getBody().getProductList();
     }
 

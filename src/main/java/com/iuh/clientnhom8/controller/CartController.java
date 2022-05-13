@@ -4,7 +4,7 @@ import com.iuh.clientnhom8.entity.Cart;
 import com.iuh.clientnhom8.entity.Customer;
 import com.iuh.clientnhom8.entity.Product;
 import com.iuh.clientnhom8.service.ProductService;
-import com.iuh.clientnhom8.utils.Utils;
+import com.iuh.clientnhom8.utils.CartUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +29,7 @@ public class CartController {
             product = productService.getProductById(id);
         }
         if (product != null) {
-            Cart cartInfo = Utils.getCartInSession(request);
+            Cart cartInfo = CartUtils.getCartInSession(request);
             cartInfo.removeProduct(product);
         }
         return "redirect:/shoppingCart";
@@ -39,7 +39,7 @@ public class CartController {
     public String shoppingCartUpdateQty(HttpServletRequest request, Model model,
                                         @ModelAttribute("cartForm") Cart cartForm) {
 
-        Cart cartInfo = Utils.getCartInSession(request);
+        Cart cartInfo = CartUtils.getCartInSession(request);
         cartInfo.updateQuantity(cartForm);
 
         return "redirect:/shoppingCart";
@@ -47,8 +47,8 @@ public class CartController {
 
     @RequestMapping(value = {"/shoppingCart"}, method = RequestMethod.GET)
     public String shoppingCartHandler(HttpServletRequest request, Model model) {
-        Cart myCart = Utils.getCartInSession(request);
-        Cart cartForm = Utils.getCartInSession(request);
+        Cart myCart = CartUtils.getCartInSession(request);
+        Cart cartForm = CartUtils.getCartInSession(request);
 
         model.addAttribute("cartForm", myCart); // lấy thông tin giỏ hàng load lên form
         model.addAttribute("myCart", cartForm); // lấy thông tin từ form để có thông tin giỏ hàng cuối cùng
@@ -57,7 +57,7 @@ public class CartController {
 
     @RequestMapping(value = { "/cart-checkout" }, method = RequestMethod.GET)
     public String checkout(HttpServletRequest request, Model model) {
-        Cart cartInfo = Utils.getCartInSession(request);
+        Cart cartInfo = CartUtils.getCartInSession(request);
 
         if (cartInfo == null || cartInfo.isEmpty()) {
             return "redirect:/shoppingCart";

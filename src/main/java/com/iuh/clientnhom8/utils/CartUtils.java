@@ -4,7 +4,7 @@ import com.iuh.clientnhom8.entity.Cart;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class Utils {
+public class CartUtils {
 	 
 	   // Products in the cart, stored in Session.
 	   public static Cart getCartInSession(HttpServletRequest request) {

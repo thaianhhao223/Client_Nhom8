@@ -6,7 +6,7 @@ import com.iuh.clientnhom8.base.request.BasePageAndSortRequest;
 import com.iuh.clientnhom8.entity.Customer;
 import com.iuh.clientnhom8.entity.Product;
 import com.iuh.clientnhom8.request.customer.CreateCustomerRequest;
-import com.iuh.clientnhom8.response.ProductPageResponse;
+import com.iuh.clientnhom8.response.ProductListResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -48,7 +48,7 @@ public class AdminService {
             basePageAndSortRequest.setPageSize(12);
             basePageAndSortRequest.setPageNumber(0);
         }
-        ResponseEntity<ProductPageResponse> response = restTemplate.postForEntity(requestUrl + "/get-all", basePageAndSortRequest, ProductPageResponse.class);
+        ResponseEntity<ProductListResponse> response = restTemplate.postForEntity(requestUrl + "/get-all", basePageAndSortRequest, ProductListResponse.class);
         return response.getBody().getProductList();
     }
 

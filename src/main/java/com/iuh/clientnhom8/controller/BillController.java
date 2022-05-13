@@ -8,15 +8,12 @@ import com.iuh.clientnhom8.entity.ProductSale;
 import com.iuh.clientnhom8.model.ProductSaleId;
 import com.iuh.clientnhom8.request.bill.CreateBillRequest;
 import com.iuh.clientnhom8.service.BillService;
-import com.iuh.clientnhom8.utils.Utils;
+import com.iuh.clientnhom8.utils.CartUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -39,7 +36,7 @@ public class BillController {
     @RequestMapping(value = { "/createBill" }, method = RequestMethod.POST)
     public String shoppingCartCustomerSave(HttpServletRequest request, Model model, @ModelAttribute("customer") Customer customer) {
 
-        Cart cartInfo = Utils.getCartInSession(request);
+        Cart cartInfo = CartUtils.getCartInSession(request);
         Customer customerInfo = Customer.builder()
                 .firstName(customer.getFirstName())
                 .lastName(customer.getLastName())
@@ -74,10 +71,10 @@ public class BillController {
             return "error";
         }
         // Remove Cart from Session.
-        Utils.removeCartInSession(request);
+        CartUtils.removeCartInSession(request);
 
         // Store last cart.
-        Utils.storeLastOrderedCartInSession(request, cartInfo);
+        CartUtils.storeLastOrderedCartInSession(request, cartInfo);
 
         model.addAttribute("bill", bill);
         return "confirmation";

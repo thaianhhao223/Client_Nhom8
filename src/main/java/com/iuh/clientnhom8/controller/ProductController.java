@@ -5,7 +5,7 @@ import com.iuh.clientnhom8.entity.Cart;
 import com.iuh.clientnhom8.entity.Product;
 
 import com.iuh.clientnhom8.service.ProductService;
-import com.iuh.clientnhom8.utils.Utils;
+import com.iuh.clientnhom8.utils.CartUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -61,7 +61,7 @@ public class ProductController {
             product = productService.getProductById(id);
         }
         if (product != null) {
-            Cart cartInfo = Utils.getCartInSession(request);
+            Cart cartInfo = CartUtils.getCartInSession(request);
             cartInfo.addProduct(product, 1);
         }
         return "redirect:/shoppingCart";
