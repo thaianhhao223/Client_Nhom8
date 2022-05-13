@@ -631,6 +631,11 @@
                           Số điện thoại
                         </th>
                         <th
+                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center"
+                        >
+                          Trạng thái
+                        </th>
+                        <th
                           colspan="2"
                           class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center"
                         >
@@ -661,12 +666,28 @@
                           <span class="text-xs font-weight-bold" th:text="${tempCustomer.phoneNumber}"></span>
                         </td>
                         <td class="align-middle text-center">
+                          <span class="text-xs font-weight-bold">
+                            <div th:if="${tempCustomer.status} == 0">
+                              <span class="badge bg-success py-1 px-2">Mới</span>
+                            </div>
+                            <div th:if="${tempCustomer.status} == 1">
+                              <span class="badge bg-success py-1 px-2">Tiềm năng</span>
+                            </div>
+                            <div th:if="${tempCustomer.status} == 100">
+                              <span class="badge bg-success py-1 px-2">Quan trọng</span>
+                            </div>
+                            <div th:if="${tempCustomer.status} == -1">
+                              <span class="badge bg-danger py-1 px-2">Vô hiệu</span>
+                            </div>
+                          </span>
+                        </td>
+                        <td class="align-middle text-center">
 
  <a class="text-xs font-weight-bold me-4 cursor-pointer text-decoration-none" th:href="@{customers/profile}">
                               <i class="fa-solid fa-eye"></i>
                             </a>
 
-                          <a th:href="@{/admin/customers/update}">
+                          <a th:href="@{/admin/customers/update/{id}(id=${tempCustomer.id})}">
                                <span class="text-xs font-weight-bold me-4 cursor-pointer" >
                               <i class="fa-solid fa-user-pen"></i>
                             </span>

@@ -552,7 +552,7 @@
         </div>
       </nav>
       <!-- End Navbar -->
-      <div class="container-fluid py-4">
+      <div class="container-fluid py-4" th:object="${customer}">
         <div class="row">
           <div class="col-12">
             <div class="card mb-4">
@@ -560,7 +560,7 @@
                 <h6>Cập nhật khách hàng</h6>
                 <!-- <a class="btn bg-gradient-secondary mt-3 w-10" href="modal2.html"></a> -->
               </div>
-              <form th:action="@{created}" th:object="${customer}" method="post" enctype="multipart/form-data">
+              <form th:action="@{updated/{id}(id=${customer.id})}" method="post" enctype="multipart/form-data">
                 <div class="card-body px-0 pt-0 pb-2 px-5">
                   <div class="row py-3">
                     <div class="col-3">
@@ -652,7 +652,7 @@
                                     type="submit"
                                     class="btn btn-danger form-control"
                             >
-                              Tạo khách hàng
+                              Cập nhật khách hàng
                             </button>
                           </a>
                         </div>
