@@ -5,8 +5,9 @@ import com.iuh.clientnhom8.entity.Customer;
 import com.iuh.clientnhom8.entity.Product;
 import com.iuh.clientnhom8.entity.ProductBrand;
 import com.iuh.clientnhom8.entity.ProductType;
-import com.iuh.clientnhom8.model.CustomerRequest;
+import com.iuh.clientnhom8.model.customer.CustomerRequest;
 import com.iuh.clientnhom8.request.customer.CreateCustomerRequest;
+import com.iuh.clientnhom8.request.customer.UpdateCustomerRequest;
 import com.iuh.clientnhom8.service.*;
 
 import com.lowagie.text.DocumentException;
@@ -195,10 +196,25 @@ public class AdminController {
 
     }
 
-    @GetMapping("/customers/update")
-    public String updateCustomer(HttpServletResponse response) throws IOException {
+    @GetMapping("/customers/update/{id}")
+    public String updateCustomer(@PathVariable("id") String id, Model model) throws IOException {
+        CustomerRequest customerRequest = new CustomerRequest();
+        Customer customer = customerService.findById(id);
+        customerRequest = MappingUtils.mapObject(customer, CustomerRequest.class);
+        customerRequest.setId(id);
+        System.out.println(customerRequest.toString());
+        model.addAttribute("customer",customerRequest);
         return "customer-admin-update";
+    }
 
+    @PostMapping("/customers/update/updated/{id}")
+    public String updateCustomer(@PathVariable("id") String id, @ModelAttribute("customer") CustomerRequest customer, Model model) throws IOException {
+        UpdateCustomerRequest updateCustomerRequest = MappingUtils.mapObject(customer, UpdateCustomerRequest.class);
+        updateCustomerRequest.setId(id);
+        System.out.println(updateCustomerRequest.toString());
+        customerService.updateCustomer(updateCustomerRequest);
+        model.addAttribute("customers", customerService.getAllCustomer());
+        return "customer-admin";
     }
     @GetMapping("/product/create")
     public String createProduct(HttpServletResponse response) throws IOException {
