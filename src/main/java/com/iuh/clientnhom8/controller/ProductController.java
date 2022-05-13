@@ -4,8 +4,11 @@ import com.iuh.clientnhom8.base.request.BasePageAndSortRequest;
 import com.iuh.clientnhom8.entity.Cart;
 import com.iuh.clientnhom8.entity.Product;
 
+import com.iuh.clientnhom8.response.ProductListResponse;
 import com.iuh.clientnhom8.service.ProductService;
 import com.iuh.clientnhom8.utils.CartUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,14 +36,22 @@ public class ProductController {
         return "index";
     }
 
-    @RequestMapping(value = {"/category"}, method = RequestMethod.POST)
-    public String getAllProduct(HttpServletRequest request, Model model, @RequestParam("pageNumber") String pageNumber) {
-        Integer pageNo = Integer.parseInt(pageNumber);
-        BasePageAndSortRequest basePageAndSortRequest = new BasePageAndSortRequest();
-        basePageAndSortRequest.setPageNumber(pageNo);
-        List<Product> products = productService.getAllProduct(basePageAndSortRequest);
+    @RequestMapping(value = {"/category"}, method = RequestMethod.GET)
+    public String getAllProduct(HttpServletRequest request, Model model) {
+        int page = 0; //default page number is 0
+        int size = 12; //default page size is 12
+        if (request.getParameter("page") != null && !request.getParameter("page").isEmpty()) {
+            page = Integer.parseInt(request.getParameter("page")) - 1;
+        }
+        if (request.getParameter("size") != null && !request.getParameter("size").isEmpty()) {
+            page = Integer.parseInt(request.getParameter("size"));
+        }
+        BasePageAndSortRequest pageRequest = new BasePageAndSortRequest();
+        pageRequest.setPageSize(size);
+        pageRequest.setPageNumber(page);
+        ProductListResponse products = productService.getProductPage(pageRequest);
         model.addAttribute("products", products);
-        return "index";
+        return "category";
     }
 
     @GetMapping("/{id}")

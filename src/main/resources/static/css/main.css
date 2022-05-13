@@ -3166,19 +3166,19 @@ label {
     .sorting .nice-select .list {
       border-radius: 0px; }
 
-.pagination {
+.pagination ul li a{
   margin-top: 10px;
   border-left: 1px solid #eee;
   border-radius: 0px; }
-  .pagination a {
+  .pagination  ul li a {
     width: 40px;
     line-height: 40px;
     text-align: center;
     display: inline-block;
     background: #fff; }
-    .pagination a.active {
+    .pagination  ul li a.active {
       color: #fff; }
-    .pagination a:hover {
+    .pagination  ul li a:hover {
       color: #fff; }
   .pagination .dot-dot {
     width: auto;

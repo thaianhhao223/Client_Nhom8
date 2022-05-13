@@ -33,6 +33,11 @@ public class ProductService {
         return response.getBody().getProductList();
     }
 
+    public ProductListResponse getProductPage(BasePageAndSortRequest request){
+        ResponseEntity<ProductListResponse> response = restTemplate.postForEntity(requestUrl + "/get-all", request, ProductListResponse.class);
+        return response.getBody();
+    }
+
     public Product getProductById(String id){
         ResponseEntity<Product> responseEntity = restTemplate.getForEntity(requestUrl + "/find-by-id/" + id, Product.class);
         return responseEntity.getBody();
