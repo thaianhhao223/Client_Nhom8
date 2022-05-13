@@ -219,5 +219,9 @@ public class AdminController {
     public String getCustomerById(HttpServletResponse response) throws IOException {
         return "customer-order-admin";
     }
+    @GetMapping("/customers/profile")
+    public String getProfileByCustomerId(HttpServletResponse response) throws IOException {
+        return "profile-admin";
+    }
 
 }

@@ -167,7 +167,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" th:href="@{/admin/brand}">
+          <a class="nav-link" th:href="@{/admin/brand}">
             <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
             >
@@ -214,7 +214,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " th:href="@{/admin/product}">
+          <a class="nav-link active" th:href="@{/admin/product}">
             <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -382,7 +382,7 @@
                 Tables
               </li>
             </ol>
-            <h6 class="font-weight-bolder mb-0 pt-2">Thương hiệu</h6>
+            <h6 class="font-weight-bolder mb-0 pt-2">Sản phẩm</h6>
           </nav>
           <div
             class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
@@ -558,7 +558,7 @@
           <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-body">
-              <p>Bạn chắc chắn muốn xóa sản phẩm này?</p>
+              <p>Are you sure delete?</p>
             </div>
             <div class="modal-footer">
               <button
@@ -566,14 +566,14 @@
                 class="btn bg-gradient-primary"
                 data-dismiss="modal"
               >
-                Xóa
+                Delete
               </button>
               <button
                 type="button"
                 class="btn bg-gradient-dark"
                 data-dismiss="modal"
               >
-                Hủy
+                Close
               </button>
             </div>
           </div>
@@ -583,63 +583,10 @@
         <div class="row">
           <div class="col-12">
             <div class="card mb-4">
-              <div class="card-header">
-                <h6>Danh sách thương hiệu</h6>
+              <div class="card-header pb-0">
+                <h6>Danh sách sản phẩm</h6>
                 <!-- <a class="btn bg-gradient-secondary mt-3 w-10" href="modal2.html"></a> -->
               </div>
-              <div class="card-header pb-0">
-                <div class="row mb-3">
-                  <div class="col-2">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Tìm kiếm bằng tên thương hiệu"
-                      aria-label="Sizing example input"
-                      aria-describedby="inputGroup-sizing-default"
-                    />
-                  </div>
-                  <div class="col-2">
-                    <select
-                      class="form-select"
-                      aria-label="Default select example"
-                    >
-                      <option selected>Thương hiệu</option>
-                      <option value="1">Adidas</option>
-                      <option value="2">Nike</option>
-                      <option value="3">Diff</option>
-                    </select>
-                  </div>
-                  <div class="col-2">
-                    <a th:href="@{/admin/brand/export/csv}"
-                       type="button"
-                       class="btn btn-success fs-15"
-                    >Export to csv</a>
-                  </div>
-                  <div class="col-2">
-                    <a th:href="@{/admin/brand/export/exel}"
-                       type="button"
-                       class="btn btn-success fs-15"
-                    >Export to exel</a>
-                  </div>
-                  <div class="col-2">
-                    <a th:href="@{/admin/brand/export/pdf}"
-                       type="button"
-                       class="btn btn-success fs-15"
-                    >Export to pdf</a>
-                  </div>
-                  <div class="col-2">
-                    <button
-                      class="btn btn-danger"
-                      style="background-color: #344767"
-                      data-bs-toggle="modal"
-                      data-bs-target="#addProduct"
-                    >
-                      + Thêm thương hiệu
-                    </button>
-                  </div>
-                </div>
-              </div>
-
               <div class="card-body px-0 pt-0 pb-2">
                 <div class="table-responsive p-0">
                   <table
@@ -648,14 +595,34 @@
                     <thead>
                       <tr>
                         <th
-                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                        >
-                          STT
-                        </th>
-                        <th
                           class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                         >
                           Tên sản phẩm
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                        >
+                          Giá
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                        >
+                          Loại
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2 text-center"
+                        >
+                          Số lượng
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center"
+                        >
+                          Trạng thái
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                        >
+                          Giảm giá
                         </th>
                         <th
                           colspan="3"
@@ -665,25 +632,44 @@
                         </th>
                       </tr>
                     </thead>
-                    <tbody th:each="tepmproductbrand : ${productbrand}">
+                    <tbody th:each="tempProduct : ${products}">
                       <tr>
-                        <td>
-                          <p class="text-sm font-weight-bold mb-0" th:text="${productbrand.indexOf(tepmproductbrand)+1}">1</p>
-                        </td>
                         <td>
                           <div class="d-flex px-2">
                             <div>
-                              <img
-                                th:src="@{/admin/img/theme/logoAdidas.png}"
+                              <img th:src="${tempProduct.urlImageThumnail}"
                                 class="avatar avatar-sm rounded-circle me-2"
+                                alt="spotify"
                               />
                             </div>
                             <div class="my-auto">
-                              <h6 class="mb-0 text-sm" th:text="${tepmproductbrand.name}"></h6>
+                              <h6 class="mb-0 text-sm">Adidas</h6>
                             </div>
                           </div>
                         </td>
-                         <td class="align-middle text-center">
+                        <td>
+                          <p class="text-sm font-weight-bold mb-0" th:text="${tempProduct.price}">VND</p>
+                        </td>
+                        <td>
+                          <span class="text-xs font-weight-bold" th:text="${tempProduct.name}"></span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <span class="text-xs font-weight-bold" th:text="${tempProduct.stock}"></span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <span class="text-xs font-weight-bold">
+                            <div th:if="${tempProduct.status} == true">
+                              <span class="badge bg-success py-1 px-2">Đang bán</span>
+                            </div>
+                            <div th:if="${tempProduct.status} == false">
+                              <span class="badge bg-success py-1 px-2">Hết hàng</span>
+                            </div>
+                          </span>
+                        </td>
+                        <td class="align-middle">
+                          <span class="text-xs font-weight-bold" th:text="${tempProduct.percentDiscount}">%</span>
+                        </td>
+                        <td class="align-middle text-center">
                           <span class="text-xs font-weight-bold me-4 cursor-pointer" data-bs-toggle="modal"
                             data-bs-target="#detailProduct">
                               <i class="fa-solid fa-eye"></i>
@@ -807,7 +793,7 @@
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Thêm thương hiệu</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Thêm sản phẩm</h5>
             <button
               type="button"
               class="btn-close"
@@ -816,16 +802,98 @@
             ></button>
           </div>
           <div class="modal-body">
+            <!-- Ảnh -->
             <div class="row mb-3">
               <div class="col-2">
-                <p>Tên thương hiệu</p>
+                <p>Ảnh sản phẩm</p>
               </div>
-              <div class="col-9">
+              <div class="col-10">
+                <input class="form-control" type="file" id="formFile" />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-2">
+                <p>Tên sản phẩm</p>
+              </div>
+              <div class="col-10">
                 <input
                   type="text"
                   class="form-control"
                   id="exampleFormControlInput1"
                   placeholder="Giày Adidas"
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-2">
+                <p>Mô tả</p>
+              </div>
+              <div class="col-10">
+                <textarea
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                ></textarea>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-2">
+                <p>Thương hiệu</p>
+              </div>
+              <div class="col-10">
+                <select class="form-select cursor-pointer" aria-label="Default select example">
+                  <option selected>Nike</option>
+                  <option value="1">Adidas</option>
+                </select>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-2">
+                <p>Loại</p>
+              </div>
+              <div class="col-10">
+                <select class="form-select cursor-pointer" aria-label="Default select example">
+                  <option selected>Giày</option>
+                  <option value="1">Dép</option>
+                </select>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-2">
+                <p>Kích cỡ</p>
+              </div>
+              <div class="col-10">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="exampleFormControlInput1"
+                  placeholder="1"
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-2">
+                <p>Giá</p>
+              </div>
+              <div class="col-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="price"
+                  placeholder="1"
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-2">
+                <p>Số lượng</p>
+              </div>
+              <div class="col-10">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="stock"
+                  placeholder="100"
                 />
               </div>
             </div>
@@ -851,7 +919,7 @@
       </div>
     </div>
 
-    <!-- Modal sửa thương hiệu -->
+    <!-- Modal sửa sản phẩm -->
     <div
       class="modal fade"
       id="updateProduct"
@@ -863,7 +931,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">
-              Cập nhật thương hiệu
+              Cập nhật sản phẩm
             </h5>
             <button
               type="button"
@@ -873,16 +941,98 @@
             ></button>
           </div>
           <div class="modal-body">
+            <!-- Ảnh -->
             <div class="row mb-3">
-              <div class="col-3">
-                <p>Tên thương hiệu</p>
+              <div class="col-2">
+                <p>Ảnh sản phẩm</p>
               </div>
-              <div class="col-9">
+              <div class="col-10">
+                <input class="form-control" type="file" id="formFile" />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-2">
+                <p>Tên sản phẩm</p>
+              </div>
+              <div class="col-10">
                 <input
                   type="text"
                   class="form-control"
                   id="exampleFormControlInput1"
                   placeholder="Giày Adidas"
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-2">
+                <p>Mô tả</p>
+              </div>
+              <div class="col-10">
+                <textarea
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                ></textarea>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-2">
+                <p>Thương hiệu</p>
+              </div>
+              <div class="col-10">
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>Nike</option>
+                  <option value="1">Adidas</option>
+                </select>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-2">
+                <p>Loại</p>
+              </div>
+              <div class="col-10">
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>Giày</option>
+                  <option value="1">Dép</option>
+                </select>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-2">
+                <p>Kích cỡ</p>
+              </div>
+              <div class="col-10">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="exampleFormControlInput1"
+                  placeholder="1"
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-2">
+                <p>Giá</p>
+              </div>
+              <div class="col-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="price"
+                  placeholder="1"
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-2">
+                <p>Số lượng</p>
+              </div>
+              <div class="col-10">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="stock"
+                  placeholder="100"
                 />
               </div>
             </div>
