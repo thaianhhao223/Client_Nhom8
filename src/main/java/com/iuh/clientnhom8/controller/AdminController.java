@@ -9,6 +9,7 @@ import com.iuh.clientnhom8.model.CustomerRequest;
 import com.iuh.clientnhom8.request.customer.CreateCustomerRequest;
 import com.iuh.clientnhom8.service.*;
 
+import com.lowagie.text.DocumentException;
 import com.iuh.clientnhom8.utils.MappingUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -163,6 +164,13 @@ public class AdminController {
         List<Product> products = productService.getAllProduct(new BasePageAndSortRequest());
         ProductExelExporter exporter = new ProductExelExporter();
         exporter.export(products, response);
+    }
+    @GetMapping("/customers/export/pdf")
+    public void exportToPdfForCustomer(HttpServletResponse response) throws IOException, DocumentException {
+        List<Customer> customerList = customerService.getAllCustomer();
+        System.out.println(" customerList" + customerList);
+        CustomerPdfExporter exporter = new CustomerPdfExporter();
+        exporter.export(customerList, response);
     }
 
     @GetMapping("/customers/create")

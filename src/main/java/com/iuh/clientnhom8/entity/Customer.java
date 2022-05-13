@@ -28,4 +28,19 @@ public class Customer implements Serializable {
     public String getName(){
         return lastName + " " +firstName;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
+                ", urlImage='" + urlImage + '\'' +
+                ", birthDate=" + birthDate +
+                ", createdDate=" + createdDate +
+                '}';
+    }
 }
