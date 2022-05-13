@@ -5,9 +5,11 @@ import com.iuh.clientnhom8.entity.Customer;
 import com.iuh.clientnhom8.entity.Product;
 import com.iuh.clientnhom8.entity.ProductBrand;
 import com.iuh.clientnhom8.entity.ProductType;
+import com.iuh.clientnhom8.model.CustomerRequest;
 import com.iuh.clientnhom8.request.customer.CreateCustomerRequest;
 import com.iuh.clientnhom8.service.*;
 
+import com.iuh.clientnhom8.utils.MappingUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,14 +32,16 @@ public class AdminController {
     private ProductTypeService productTypeService;
     private ProductBrandService productBrandService;
     private BillService billService;
+    private UploadFileService uploadFileService;
 
-    public AdminController(AdminService adminService, CustomerService customerService, ProductService productService, ProductTypeService productTypeService, ProductBrandService productBrandService, BillService billService) {
+    public AdminController(AdminService adminService, CustomerService customerService, ProductService productService, ProductTypeService productTypeService, ProductBrandService productBrandService, BillService billService, UploadFileService uploadFileService) {
         this.adminService = adminService;
         this.customerService = customerService;
         this.productService = productService;
         this.productTypeService = productTypeService;
         this.productBrandService = productBrandService;
         this.billService = billService;
+        this.uploadFileService = uploadFileService;
     }
 
     @GetMapping("/home")
@@ -162,10 +166,27 @@ public class AdminController {
     }
 
     @GetMapping("/customers/create")
-    public String createCustomer(HttpServletResponse response) throws IOException {
+    public String createCustomer(Model model) throws IOException {
+        CustomerRequest customer = new CustomerRequest();
+
+        model.addAttribute("customer",customer);
         return "customer-admin-create";
 
     }
+
+    @PostMapping("/customers/created")
+    public String createdCustomer(@ModelAttribute("customer") CustomerRequest customer, Model model) throws IOException {
+//        String urlImage = uploadFileService.uploadFile(customer.getUrlImage());
+//        System.out.println(urlImage);
+        System.out.println(customer.toString());
+        CreateCustomerRequest createCustomerRequest = MappingUtils.mapObject(customer, CreateCustomerRequest.class);
+        customerService.createCustomer(createCustomerRequest);
+        System.out.println(createCustomerRequest.toString());
+        model.addAttribute("customers", customerService.getAllCustomer());
+        return "customer-admin";
+
+    }
+
     @GetMapping("/customers/update")
     public String updateCustomer(HttpServletResponse response) throws IOException {
         return "customer-admin-update";
