@@ -569,85 +569,102 @@
                     <form th:action="@{created}" th:object="${customer}" method="post" enctype="multipart/form-data">
                     <div class="card-body px-0 pt-0 pb-2 px-5">
                         <div class="row py-3">
-                            <div class="col-4">
-                                <div class="mb-3">
-                                    <label for="firstName" class="form-label">Họ</label>
-                                    <input th:field="*{firstName}" type="text" class="form-control"
-                                           id="firstName"
-                                           placeholder="Trần">
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="mb-3">
-                                    <label for="lastName" class="form-label">Tên</label>
-                                    <input th:field="*{lastName}" type="text" class="form-control" id="lastName" placeholder="Thuận">
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input th:field="*{email}" type="email" class="form-control" id="email" placeholder="admin@gmail.com">
-                                </div>
-                            </div>
                             <div class="col-3">
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label">Avatar</label>
-                                    <input th:field="*{urlImage}" class="form-control" type="file" id="formFile">
+                                <div class="row py-3">
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label for="formFile" class="form-label">Avatar</label>
+                                            <input th:field="*{urlImage}" class="form-control" type="file" id="formFile" accept="image/*" onchange="loadFile(event)">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row py-3">
+                                    <div class="col-12">
+                                        <div class="mb-3 preview-wrapper">
+                                            <img id="output" class=""/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-3">
-                                <div class="mb-3">
-                                    <label for="phone" class="form-label">Số điện thoại</label>
-                                    <input th:field="*{phoneNumber}" type="tel" class="form-control" id="phone" placeholder="0987999888">
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="mb-3">
-                                    <label for="birthDate" class="form-label">Ngày sinh</label>
-                                    <input th:field="*{birthDate}" type="date" class="form-control" id="birthDate">
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="mb-3">
-                                    <label class="form-label">Trạng thái</label>
-                                    <select th:field="*{status}" class="form-select cursor-pointer">
-                                        <option selected value="0">Khách hàng mới</option>
-                                        <option value="1">Khách hàng tiềm năng</option>
-                                        <option value="100">Khách hàng quan trọng</option>
-<!--                                        <option value="-1">Khách hàng cũ</option>-->
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="mb-3">
-                                    <label for="address" class="form-label">Địa chỉ</label>
-                                    <textarea th:field="*{address}" class="form-control" id="address" rows="3"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <a th:href="@{/admin/customers}">
-                                    <button
-                                            type="button"
-                                            class="btn btn-secondary form-control"
-                                    >
-                                        Trờ lại
-                                    </button>
-                                </a>
-                            </div>
-                            <div class="col-4">
+                            <div class="col-9">
+                                <div class="row py-3">
+                                    <div class="col-4">
+                                        <div class="mb-4">
+                                            <label for="firstName" class="form-label">Họ</label>
+                                            <input th:field="*{firstName}" type="text" class="form-control"
+                                                   id="firstName"
+                                                   placeholder="Trần">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mb-4">
+                                            <label for="lastName" class="form-label">Tên</label>
+                                            <input th:field="*{lastName}" type="text" class="form-control" id="lastName" placeholder="Thuận">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mb-4">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input th:field="*{email}" type="email" class="form-control" id="email" placeholder="admin@gmail.com">
+                                        </div>
+                                    </div>
 
-                            </div>
-                            <div class="col-4">
+                                    <div class="col-4">
+                                        <div class="mb-4">
+                                            <label for="phone" class="form-label">Số điện thoại</label>
+                                            <input th:field="*{phoneNumber}" type="tel" class="form-control" id="phone" placeholder="0987999888">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mb-4">
+                                            <label for="birthDate" class="form-label">Ngày sinh</label>
+                                            <input th:field="*{birthDate}" type="date" class="form-control" id="birthDate" value="2000-05-05">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mb-4">
+                                            <label class="form-label">Trạng thái</label>
+                                            <select th:field="*{status}" class="form-select cursor-pointer">
+                                                <option selected value="0">Khách hàng mới</option>
+                                                <option value="1">Khách hàng tiềm năng</option>
+                                                <option value="100">Khách hàng quan trọng</option>
+                                                <!--                                        <option value="-1">Khách hàng cũ</option>-->
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-4">
+                                            <label for="address" class="form-label">Địa chỉ</label>
+                                            <textarea th:field="*{address}" class="form-control" id="address" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <a th:href="@{/admin/customers}">
+                                            <button
+                                                    type="button"
+                                                    class="btn btn-secondary form-control"
+                                            >
+                                                Trờ lại
+                                            </button>
+                                        </a>
+                                    </div>
+                                    <div class="col-6">
 
-                                <a >
-                                    <button
-                                            type="submit"
-                                            class="btn btn-danger form-control"
-                                    >
-                                        Tạo khách hàng
-                                    </button>
-                                </a>
+                                    </div>
+                                    <div class="col-3">
+
+                                        <a >
+                                            <button
+                                                    type="submit"
+                                                    class="btn btn-danger form-control"
+                                            >
+                                                Tạo khách hàng
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
 
                     </div>
@@ -754,6 +771,7 @@
         Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
     }
 </script>
+<script th:src="@{/js/previewImage.js}"></script>
 <th:block th:include="/_footer-admin"></th:block>
 </body>
 </html>
