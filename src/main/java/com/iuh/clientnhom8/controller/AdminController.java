@@ -6,6 +6,7 @@ import com.iuh.clientnhom8.entity.Product;
 import com.iuh.clientnhom8.entity.ProductBrand;
 import com.iuh.clientnhom8.entity.ProductType;
 import com.iuh.clientnhom8.model.customer.CustomerRequest;
+import com.iuh.clientnhom8.model.producttype.CreateProductType;
 import com.iuh.clientnhom8.request.customer.CreateCustomerRequest;
 import com.iuh.clientnhom8.request.customer.UpdateCustomerRequest;
 import com.iuh.clientnhom8.service.*;
@@ -66,6 +67,15 @@ public class AdminController {
 
     @GetMapping("/type")
     public String typeAdmin(Model model){
+        model.addAttribute("producttype", productTypeService.getAllProductType());
+        model.addAttribute("producttypecreate",new CreateProductType());
+        return "type-admin";
+    }
+
+    @PostMapping("/type/created")
+    public String createTypeAdmin(@ModelAttribute("producttypecreate") CreateProductType request, Model model){
+        System.out.println(request.toString());
+        productTypeService.createProductType(request);
         model.addAttribute("producttype", productTypeService.getAllProductType());
         return "type-admin";
     }

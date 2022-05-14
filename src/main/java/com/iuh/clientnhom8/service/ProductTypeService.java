@@ -2,6 +2,8 @@ package com.iuh.clientnhom8.service;
 
 import com.iuh.clientnhom8.entity.Customer;
 import com.iuh.clientnhom8.entity.ProductType;
+import com.iuh.clientnhom8.model.producttype.CreateProductType;
+import com.iuh.clientnhom8.request.customer.CreateCustomerRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -27,5 +29,9 @@ public class ProductTypeService {
                 new ParameterizedTypeReference<List<ProductType>>() {
                 });
         return response.getBody();
+    }
+
+    public void createProductType(CreateProductType request) {
+        restTemplate.postForEntity(requestUrl+"/save", request, ProductType.class);
     }
 }
