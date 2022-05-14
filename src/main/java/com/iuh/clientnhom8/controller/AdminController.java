@@ -217,11 +217,11 @@ public class AdminController {
         return "customer-admin";
     }
 
-    @PostMapping("/customers/delete/{id}")
+    @GetMapping("/customers/delete/{id}")
     public String updateStatusDeletedCustomer(@PathVariable("id") String id, Model model) throws IOException {
 
         System.out.println(id);
-//        customerService.updateCustomer(updateCustomerRequest);
+        customerService.updateStatusDisbleCustomer(id);
         model.addAttribute("customers", customerService.getAllCustomer());
         return "customer-admin";
     }

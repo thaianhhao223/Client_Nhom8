@@ -5,6 +5,7 @@ import java.util.List;
 import com.iuh.clientnhom8.entity.Customer;
 import com.iuh.clientnhom8.request.customer.CreateCustomerRequest;
 import com.iuh.clientnhom8.request.customer.UpdateCustomerRequest;
+import com.iuh.clientnhom8.request.customer.UpdateStatusCustomerRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -46,7 +47,8 @@ public class CustomerService {
 		restTemplate.postForEntity(requestUrl+"update", request, Customer.class);
 	}
 
-//	public void updateStatusCustomer(String id) {
-//		restTemplate.postForEntity(requestUrl+"update", request, Customer.class);
-//	}
+	public void updateStatusDisbleCustomer(String id) {
+		UpdateStatusCustomerRequest updateStatusCustomerRequest = UpdateStatusCustomerRequest.builder().id(id).status(-1).build();
+		restTemplate.postForEntity(requestUrl+"/customer/status", updateStatusCustomerRequest, Customer.class);
+	}
 }
