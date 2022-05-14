@@ -4776,7 +4776,7 @@ label {
   .login_form_inner h3 {
     color: #222222;
     text-transform: uppercase;
-    font-size: 18px;
+    font-size: 20px;
     margin-bottom: 30px; }
   .login_form_inner .login_form {
     max-width: 385px;
@@ -4793,6 +4793,11 @@ label {
   border-radius: 0px;
   outline: none;
   box-shadow: none; }
+.login_form .form-group label {
+  display: flex;
+  font-family: "Roboto", sans-serif;
+  color: #777777;
+  font-size: 16px; }
 .login_form .form-group .creat_account {
   margin-top: 10px;
   margin-bottom: 15px;
