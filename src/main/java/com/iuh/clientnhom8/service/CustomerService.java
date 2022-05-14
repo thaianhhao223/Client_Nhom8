@@ -42,7 +42,11 @@ public class CustomerService {
 	}
 
 	public void updateCustomer(UpdateCustomerRequest request) {
+
 		restTemplate.postForEntity(requestUrl+"update", request, Customer.class);
 	}
 
+//	public void updateStatusCustomer(String id) {
+//		restTemplate.postForEntity(requestUrl+"update", request, Customer.class);
+//	}
 }

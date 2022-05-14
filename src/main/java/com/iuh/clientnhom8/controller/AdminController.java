@@ -216,6 +216,16 @@ public class AdminController {
         model.addAttribute("customers", customerService.getAllCustomer());
         return "customer-admin";
     }
+
+    @PostMapping("/customers/delete/{id}")
+    public String updateStatusDeletedCustomer(@PathVariable("id") String id, Model model) throws IOException {
+
+        System.out.println(id);
+//        customerService.updateCustomer(updateCustomerRequest);
+        model.addAttribute("customers", customerService.getAllCustomer());
+        return "customer-admin";
+    }
+
     @GetMapping("/product/create")
     public String createProduct(HttpServletResponse response) throws IOException {
         return "product-admin-create";
@@ -235,8 +245,14 @@ public class AdminController {
     public String getCustomerById(HttpServletResponse response) throws IOException {
         return "customer-order-admin";
     }
-    @GetMapping("/customers/profile")
-    public String getProfileByCustomerId(HttpServletResponse response) throws IOException {
+    @GetMapping("/customers/profile/{id}")
+    public String getProfileByCustomerId(@PathVariable("id") String id, Model model) throws IOException {
+        CustomerRequest customerRequest = new CustomerRequest();
+        Customer customer = customerService.findById(id);
+        customerRequest = MappingUtils.mapObject(customer, CustomerRequest.class);
+        customerRequest.setId(id);
+        System.out.println(customerRequest.toString());
+        model.addAttribute("customer",customerRequest);
         return "profile-admin";
     }
 

@@ -25,6 +25,7 @@ public class CustomerRequest implements Serializable {
     private MultipartFile urlImage;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthDate;
+    private Date createdDate;
     private Integer status;
 
     public String getName(){

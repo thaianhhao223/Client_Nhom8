@@ -683,7 +683,7 @@
                         </td>
                         <td class="align-middle text-center">
 
- <a class="text-xs font-weight-bold me-4 cursor-pointer text-decoration-none" th:href="@{customers/profile}">
+ <a class="text-xs font-weight-bold me-4 cursor-pointer text-decoration-none" th:href="@{customers/profile/{id}(id=${tempCustomer.id})}">
                               <i class="fa-solid fa-eye"></i>
                             </a>
 
@@ -692,11 +692,13 @@
                               <i class="fa-solid fa-user-pen"></i>
                             </span>
                           </a>
-
-                          <span class="text-xs font-weight-bold cursor-pointer" data-toggle="modal"
-                                data-target="#detailProduct">
+                          <a th:href="@{/admin/customers/delete/{id}(id=${tempCustomer.id})}">
+                            <span class="text-xs font-weight-bold cursor-pointer" data-toggle="modal"
+                                  data-target="#detailProduct">
                               <i class="fa-solid fa-trash-can"></i>
                             </span>
+                          </a>
+
                         </td>
                       </tr>
                     </tbody>
