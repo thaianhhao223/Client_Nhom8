@@ -6,7 +6,6 @@ import com.iuh.clientnhom8.entity.Customer;
 import com.iuh.clientnhom8.request.customer.CreateCustomerRequest;
 import com.iuh.clientnhom8.request.customer.UpdateCustomerRequest;
 import com.iuh.clientnhom8.request.customer.UpdateStatusCustomerRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -37,9 +36,10 @@ public class CustomerService {
 		ResponseEntity<Customer> responseEntity = restTemplate.getForEntity(requestUrl + "/" + id, Customer.class);
 		return responseEntity.getBody();
 	}
-	
-	public void createCustomer(CreateCustomerRequest request) {
-		restTemplate.postForEntity(requestUrl, request, Customer.class);
+
+	public Customer createCustomer(CreateCustomerRequest request) {
+		Customer customer = restTemplate.postForEntity(requestUrl, request, Customer.class).getBody();
+		return customer;
 	}
 
 	public void updateCustomer(UpdateCustomerRequest request) {

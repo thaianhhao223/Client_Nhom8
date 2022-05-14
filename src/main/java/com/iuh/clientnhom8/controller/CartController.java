@@ -3,8 +3,10 @@ package com.iuh.clientnhom8.controller;
 import com.iuh.clientnhom8.entity.Cart;
 import com.iuh.clientnhom8.entity.Customer;
 import com.iuh.clientnhom8.entity.Product;
+import com.iuh.clientnhom8.response.LoginInfoResponse;
 import com.iuh.clientnhom8.service.ProductService;
 import com.iuh.clientnhom8.utils.CartUtils;
+import com.iuh.clientnhom8.utils.UserUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -61,6 +63,10 @@ public class CartController {
 
         if (cartInfo == null || cartInfo.isEmpty()) {
             return "redirect:/shoppingCart";
+        }
+        LoginInfoResponse loginInfoResponse = UserUtils.getUserInfo(request);
+        if (loginInfoResponse == null){
+            return "redirect:/login";
         }
         // TODO: bổ sung thông tin khách info khách hàng
         Customer customer = new Customer();

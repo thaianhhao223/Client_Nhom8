@@ -49,8 +49,8 @@
 						<li class="nav-item"><a class="nav-link" th:href="@{/products/category}">Products</a></li>
 						<li class="nav-item"><a class="nav-link" th:href="@{/shoppingCart}">Cart</a></li>
 						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-						<li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-						<li class="nav-item"><a class="nav-link" href="registration.html">Register</a></li>
+						<li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a></li>
+						<li class="nav-item"><a class="nav-link" th:href="@{/registration}">Register</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="nav-item"><a href="cart.html" class="cart"><span class="ti-bag"></span></a></li>
@@ -61,15 +61,6 @@
 				</div>
 			</div>
 		</nav>
-	</div>
-	<div class="search_input" id="search_input_box">
-		<div class="container">
-			<form class="d-flex justify-content-between">
-				<input type="text" class="form-control" id="search_input" placeholder="Search Here">
-				<button type="submit" class="btn"></button>
-				<span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
-			</form>
-		</div>
 	</div>
 </header>
 <!-- End Header Area -->
@@ -106,44 +97,45 @@
 				</div>
 				<div class="col-lg-6">
 					<div class="login_form_inner">
-						<form class="row login_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+						<form th:action="@{/registration}" th:object="${registerForm}" class="row login_form" method="post">
 							<h3>Account Information</h3>
 							<div class="col-md-12 form-group">
-								<label for="username" class="form-label">Username:</label>
-								<input type="text" class="form-control" id="username" name="username" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+								<label for="userName" class="form-label">Username:</label>
+								<input th:field="*{userName}" type="text" class="form-control" id="userName" name="userName" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
 							</div>
 							<div class="col-md-12 form-group">
-								<label for="password" class="form-label">Password:</label>
-								<input type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+								<label for="passWord" class="form-label">Password:</label>
+								<input th:field="*{passWord}" type="password" class="form-control" id="passWord" name="passWord" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 							</div>
 							<div class="col-md-12 form-group">
 								<label for="retype-password" class="form-label">Retype Password:</label>
-								<input type="password" class="form-control" id="retype-password" name="retype-password" placeholder="Retype Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Retype Password'">
+								<input type="password" class="form-control" id="retype-password" name="retype-password" placeholder="Retype Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Retype Password'" onChange="isPasswordMatch();">
+								<div id="divCheckPassword" style="color: #d60808"></div>
 							</div>
 							<h3>User Information</h3>
 							<div class="col-md-12 form-group">
 								<label for="firstName" class="form-label">First Name:</label>
-								<input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'">
+								<input th:field="*{firstName}" type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'">
 							</div>
 							<div class="col-md-12 form-group">
 								<label for="lastName" class="form-label">Last Name:</label>
-								<input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'">
+								<input th:field="*{lastName}" type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'">
 							</div>
 							<div class="col-md-12 form-group">
 								<label for="email" class="form-label">Email:</label>
-								<input type="text" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+								<input th:field="*{email}" type="email" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
 							</div>
 							<div class="col-md-12 form-group">
 								<label for="phoneNumber" class="form-label">Phone Number:</label>
-								<input type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number'">
+								<input th:field="*{phoneNumber}" type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number'">
 							</div>
 							<div class="col-md-12 form-group">
 								<label for="birthDate" class="form-label">Date of Birth:</label>
-								<input type="date" class="form-control" id="birthDate" name="birthDate">
+								<input th:field="*{birthDate}" type="date" class="form-control" id="birthDate" name="birthDate">
 							</div>
 							<div class="col-md-12 form-group">
 								<label for="address" class="form-label">Address:</label>
-								<textarea class="form-control" id="address" name="address" rows="3" placeholder="Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'"></textarea>
+								<textarea th:field="*{address}" class="form-control" id="address" name="address" rows="3" placeholder="Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'"></textarea>
 							</div>
 							<div class="col-md-12 form-group">
 								<button type="submit" value="submit" class="primary-btn">Register</button>

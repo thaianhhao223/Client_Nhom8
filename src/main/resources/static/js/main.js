@@ -1,3 +1,14 @@
+function isPasswordMatch() {
+    var password = $("#passWord").val();
+    var confirmPassword = $("#retype-password").val();
+
+    if (password != confirmPassword) $("#divCheckPassword").html("Passwords do not match!");
+    else $("#divCheckPassword").html("");
+}
+
+$(document).ready(function () {
+    $("#txtConfirmPassword").keyup(isPasswordMatch);
+});
 
 $(document).ready(function(){
 	"use strict";
