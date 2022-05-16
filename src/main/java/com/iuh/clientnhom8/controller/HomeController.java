@@ -48,7 +48,7 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/contact",method = RequestMethod.GET)
-    public String contact(){
+    public String contact(HttpServletRequest request, Model model){
         return "contact";
     }
 
@@ -86,6 +86,12 @@ public class HomeController {
         if (!result){
             return "error/500";
         }
+        return "redirect:/login";
+    }
+
+    @RequestMapping(value = "/logout",method = RequestMethod.GET)
+    public String logout(HttpServletRequest request, Model model){
+        UserUtils.logout(request);
         return "redirect:/login";
     }
 }

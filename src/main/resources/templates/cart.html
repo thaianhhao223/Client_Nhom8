@@ -91,7 +91,7 @@
         <div class="container">
             <th:block th:if="${cartForm == null || cartForm.productList == null || cartForm.productList.empty}">
                 <h2>There is no items in Cart</h2>
-                <a th:href="@{/}">Show Product List</a>
+                <a th:href="@{/products/category}">Show Product List</a>
             </th:block>
             <div class="cart_inner">
                 <div class="table-responsive">
