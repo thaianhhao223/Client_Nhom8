@@ -1,10 +1,10 @@
 console.log("Running validation");
 /* Check validation */
-var firstName = document.getElementById('first');
-var lastName = document.getElementById('last');
-var phone = document.getElementById('number');
+var firstName = document.getElementById('firstName');
+var lastName = document.getElementById('lastName');
+var phone = document.getElementById('phoneNumber');
 var email = document.getElementById('email');
-var address = document.getElementById('message');
+var address = document.getElementById('address');
 
 function checkSubmitData() {
     if(checkFirstName() && checkLastName() && checkPhone() && checkEmail() && checkAddress()

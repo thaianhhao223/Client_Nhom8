@@ -26,9 +26,10 @@
                         <li class="nav-item active"><a class="nav-link" th:href="@{/}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" th:href="@{/products/category}">Products</a></li>
                         <li class="nav-item"><a class="nav-link" th:href="@{/shoppingCart}">Cart</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contact</a></li>
                         <li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a></li>
                         <li class="nav-item"><a class="nav-link" th:href="@{/registration}">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item"><a href="cart.html" class="cart"><span class="ti-bag"></span></a></li>
@@ -68,23 +69,28 @@
                         <h3>Billing Details</h3>
                         <form method="POST" th:object="${customer}" th:action="@{/bills/createBill}" onsubmit="return checkSubmitData()">
                             <div class="col-md-12 form-group p_star">
-                                <input onblur="checkFirstName()" type="text" placeholder="First name" class="form-control mb-1" id="first" name="name" th:field="*{firstName}">
+                                <label for="firstName" class="form-label">First Name:</label>
+                                <input onblur="checkFirstName()" type="text" placeholder="First name" class="form-control mb-1" id="firstName" name="name" th:field="*{firstName}">
                                 <span id="userError" class="text-danger"></span>
                             </div>
                             <div class="col-md-12 form-group p_star">
-                                <input onblur="checkLastName()" type="text" placeholder="Last name" class="form-control mb-1" id="last" name="name" th:field="*{lastName}">
+                                <label for="lastName" class="form-label">Last Name:</label>
+                                <input onblur="checkLastName()" type="text" placeholder="Last name" class="form-control mb-1" id="lastName" name="name" th:field="*{lastName}">
                                 <span id="userLastError" class="text-danger"></span>
                             </div>
                             <div class="col-md-12 form-group p_star">
-                                <input onblur="checkPhone()" type="text" placeholder="Phone number" class="form-control mb-1" id="number" name="number" th:field="*{phoneNumber}">
+                                <label for="phoneNumber" class="form-label">Phone Number:</label>
+                                <input onblur="checkPhone()" type="text" placeholder="Phone number" class="form-control mb-1" id="phoneNumber" name="number" th:field="*{phoneNumber}">
                                 <span id="phoneError" class="text-danger"></span>
                             </div>
                             <div class="col-md-12 form-group p_star">
+                                <label for="email" class="form-label">Email:</label>
                                 <input onblur="checkEmail()" type="text" placeholder="Email Address" class="form-control" id="email" name="compemailany" th:field="*{email}">
                                 <span id="emailError" class="text-danger"></span>
                             </div>
                             <div class="col-md-12 form-group">
-                                <textarea class="form-control" name="message" id="message" rows="1" placeholder="Address" th:field="*{address}"></textarea>
+                                <label for="address" class="form-label">Address:</label>
+                                <textarea onblur="checkAddress()" class="form-control" name="message" id="address" rows="1" placeholder="Address" th:field="*{address}"></textarea>
                                 <span id="addressError" class="text-danger"></span>
                             </div>
                             <input type="submit" value="Proceed to Cash" class="primary-btn"/>

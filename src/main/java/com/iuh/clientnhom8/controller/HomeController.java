@@ -36,39 +36,22 @@ public class HomeController {
     }
 
     @RequestMapping({"/", "/home"})
-    public String getAllCustomer(Model model, BasePageAndSortRequest basePageAndSortRequest) {
-        List<Product> products = productService.getAllProduct(basePageAndSortRequest);
+    public String getAllCustomer(HttpServletRequest request, Model model) {
+        int page = 0; //default page number is 0
+        int size = 12; //default page size is 12
+        BasePageAndSortRequest pageRequest = new BasePageAndSortRequest();
+        pageRequest.setPageSize(size);
+        pageRequest.setPageNumber(page);
+        List<Product> products = productService.getAllProduct(pageRequest);
         model.addAttribute("products", products);
         return "index";
     }
-//    @RequestMapping(value = "/",method = RequestMethod.GET)
-//    public String hello(){
-//        return "single-product";
-//    }
-//    @RequestMapping(value = "/cart",method = RequestMethod.GET)
-//    public String cart(){
-//        return "cart";
-//    }
-//    @RequestMapping(value = "/checkout",method = RequestMethod.GET)
-//    public String checkout(){
-//        return "checkout";
-//    }
-    @RequestMapping(value = "/category",method = RequestMethod.GET)
-    public String category(){
-        return "category";
+
+    @RequestMapping(value = "/contact",method = RequestMethod.GET)
+    public String contact(){
+        return "contact";
     }
-//    @RequestMapping(value = "/confirmation",method = RequestMethod.GET)
-//    public String confirmation(){
-//        return "confirmation";
-//    }
-//    @RequestMapping(value = "/contact",method = RequestMethod.GET)
-//    public String contact(){
-//        return "contact";
-//    }
-//    @RequestMapping(value = "/elements",method = RequestMethod.GET)
-//    public String elements(){
-//        return "elements";
-//    }
+
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String goToLogin(HttpServletRequest request, Model model){
         LoginInfoResponse loginInfoResponse = UserUtils.getUserInfo(request);
@@ -105,9 +88,5 @@ public class HomeController {
         }
         return "redirect:/login";
     }
-//    @RequestMapping(value = "/tracking",method = RequestMethod.GET)
-//    public String tracking(){
-//        return "tracking";
-//    }
 }
 

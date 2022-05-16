@@ -4,6 +4,7 @@ import com.iuh.clientnhom8.entity.Cart;
 import com.iuh.clientnhom8.entity.Customer;
 import com.iuh.clientnhom8.entity.Product;
 import com.iuh.clientnhom8.response.LoginInfoResponse;
+import com.iuh.clientnhom8.service.CustomerService;
 import com.iuh.clientnhom8.service.ProductService;
 import com.iuh.clientnhom8.utils.CartUtils;
 import com.iuh.clientnhom8.utils.UserUtils;
@@ -18,9 +19,12 @@ import java.util.logging.Logger;
 public class CartController {
     private Logger logger = Logger.getLogger(getClass().getName());
     private final ProductService productService;
+    private final CustomerService customerService;
 
-    public CartController(ProductService productService) {
+    public CartController(ProductService productService,
+                          CustomerService customerService) {
         this.productService = productService;
+        this.customerService = customerService;
     }
 
     @RequestMapping({ "/shoppingCartRemoveProduct" })
@@ -68,8 +72,7 @@ public class CartController {
         if (loginInfoResponse == null){
             return "redirect:/login";
         }
-        // TODO: bổ sung thông tin khách info khách hàng
-        Customer customer = new Customer();
+        Customer customer = customerService.findById(loginInfoResponse.getUserId());
         model.addAttribute("customer", customer);
         model.addAttribute("myCart", cartInfo);
         return "checkout";

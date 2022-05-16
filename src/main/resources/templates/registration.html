@@ -48,9 +48,10 @@
 						<li class="nav-item active"><a class="nav-link" th:href="@{/}">Home</a></li>
 						<li class="nav-item"><a class="nav-link" th:href="@{/products/category}">Products</a></li>
 						<li class="nav-item"><a class="nav-link" th:href="@{/shoppingCart}">Cart</a></li>
-						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+						<li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contact</a></li>
 						<li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a></li>
 						<li class="nav-item"><a class="nav-link" th:href="@{/registration}">Register</a></li>
+						<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="nav-item"><a href="cart.html" class="cart"><span class="ti-bag"></span></a></li>
@@ -97,7 +98,7 @@
 				</div>
 				<div class="col-lg-6">
 					<div class="login_form_inner">
-						<form th:action="@{/registration}" th:object="${registerForm}" class="row login_form" method="post">
+						<form th:action="@{/registration}" th:object="${registerForm}" class="row login_form" method="post" onsubmit="return checkSubmitData()">
 							<h3>Account Information</h3>
 							<div class="col-md-12 form-group">
 								<label for="userName" class="form-label">Username:</label>
@@ -115,19 +116,23 @@
 							<h3>User Information</h3>
 							<div class="col-md-12 form-group">
 								<label for="firstName" class="form-label">First Name:</label>
-								<input th:field="*{firstName}" type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'">
+								<input onblur="checkFirstName()" th:field="*{firstName}" type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" onfocus="this.placeholder = ''">
+								<span id="userError" class="text-danger"></span>
 							</div>
 							<div class="col-md-12 form-group">
 								<label for="lastName" class="form-label">Last Name:</label>
-								<input th:field="*{lastName}" type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'">
+								<input onblur="checkLastName()" th:field="*{lastName}" type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" onfocus="this.placeholder = ''">
+								<span id="userLastError" class="text-danger"></span>
 							</div>
 							<div class="col-md-12 form-group">
 								<label for="email" class="form-label">Email:</label>
-								<input th:field="*{email}" type="email" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+								<input onblur="checkEmail()" th:field="*{email}" type="email" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''">
+								<span id="emailError" class="text-danger"></span>
 							</div>
 							<div class="col-md-12 form-group">
 								<label for="phoneNumber" class="form-label">Phone Number:</label>
-								<input th:field="*{phoneNumber}" type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number'">
+								<input onblur="checkPhone()" th:field="*{phoneNumber}" type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" onfocus="this.placeholder = ''">
+								<span id="phoneError" class="text-danger"></span>
 							</div>
 							<div class="col-md-12 form-group">
 								<label for="birthDate" class="form-label">Date of Birth:</label>
@@ -135,7 +140,8 @@
 							</div>
 							<div class="col-md-12 form-group">
 								<label for="address" class="form-label">Address:</label>
-								<textarea th:field="*{address}" class="form-control" id="address" name="address" rows="3" placeholder="Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'"></textarea>
+								<textarea th:field="*{address}" class="form-control" id="address" name="address" rows="3" placeholder="Address" onfocus="this.placeholder = ''"></textarea>
+								<span id="addressError" class="text-danger"></span>
 							</div>
 							<div class="col-md-12 form-group">
 								<button type="submit" value="submit" class="primary-btn">Register</button>
@@ -241,6 +247,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 	<script th:src="@{/js/gmaps.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
+	<script th:src="@{/js/validation.js}"></script>
 </body>
 
 </html>

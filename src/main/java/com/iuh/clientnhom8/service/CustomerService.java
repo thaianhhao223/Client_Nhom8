@@ -33,7 +33,7 @@ public class CustomerService {
 	}
 	
 	public Customer findById(String id) {
-		ResponseEntity<Customer> responseEntity = restTemplate.getForEntity(requestUrl + "/" + id, Customer.class);
+		ResponseEntity<Customer> responseEntity = restTemplate.getForEntity(requestUrl + "customer/" + id, Customer.class);
 		return responseEntity.getBody();
 	}
 
