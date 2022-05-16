@@ -6,6 +6,7 @@ import com.iuh.clientnhom8.entity.Product;
 import com.iuh.clientnhom8.entity.ProductBrand;
 import com.iuh.clientnhom8.entity.ProductType;
 import com.iuh.clientnhom8.model.customer.CustomerRequest;
+import com.iuh.clientnhom8.model.productbrand.CreateProductBrand;
 import com.iuh.clientnhom8.model.producttype.CreateProductType;
 import com.iuh.clientnhom8.request.customer.CreateCustomerRequest;
 import com.iuh.clientnhom8.request.customer.UpdateCustomerRequest;
@@ -77,12 +78,22 @@ public class AdminController {
         System.out.println(request.toString());
         productTypeService.createProductType(request);
         model.addAttribute("producttype", productTypeService.getAllProductType());
+        model.addAttribute("producttypecreate",new CreateProductType());
         return "type-admin";
     }
 
     @GetMapping("/brand")
     public String brandAdmin(Model model){
         model.addAttribute("productbrand", productBrandService.getAllProductBrand());
+        model.addAttribute("productbrandcreate",new CreateProductBrand());
+        return "brand-admin";
+    }
+
+    @PostMapping("/brand/created")
+    public String brandAdmin(@ModelAttribute("productbrandcreate") CreateProductBrand request,Model model){
+        productBrandService.createProductBrand(request);
+        model.addAttribute("productbrand", productBrandService.getAllProductBrand());
+        model.addAttribute("productbrandcreate",new CreateProductBrand());
         return "brand-admin";
     }
 

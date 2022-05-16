@@ -815,21 +815,23 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body">
-            <div class="row mb-3">
-              <div class="col-2">
-                <p>Tên thương hiệu</p>
-              </div>
-              <div class="col-9">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
-                  placeholder="Giày Adidas"
-                />
+          <form th:action="@{brand/created}" th:object="${productbrandcreate}" method="post">
+            <div class="modal-body">
+              <div class="row mb-3">
+                <div class="col-2">
+                  <p>Tên thương hiệu</p>
+                </div>
+                <div class="col-9">
+                  <input th:field="*{name}"
+                          type="text"
+                          class="form-control"
+                          id="exampleFormControlInput1"
+                          placeholder="Giày Adidas"
+                  />
+                </div>
               </div>
             </div>
-          </div>
+          </form>
           <!-- Button -->
           <div class="modal-footer">
             <button
@@ -839,8 +841,8 @@
             >
               Hủy
             </button>
-            <button
-              type="button"
+            <button th:href="@{/admin/brand/create}"
+              type="submit"
               class="btn btn-primary"
               style="background: #344767"
             >
