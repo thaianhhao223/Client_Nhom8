@@ -815,7 +815,7 @@
               aria-label="Close"
             ></button>
           </div>
-          <form th:action="@{brand/created}" th:object="${productbrandcreate}" method="post">
+          <form th:action="@{brand/created}" th:object="${productbrandcreate}" method="post" onsubmit="return checkSubmitBrandData()">
             <div class="modal-body">
               <div class="row mb-3">
                 <div class="col-2">
@@ -825,9 +825,11 @@
                   <input th:field="*{name}"
                           type="text"
                           class="form-control"
-                          id="exampleFormControlInput1"
+                          id="brandName"
+                         onblur="checkBrandName()"
                           placeholder="Giày Adidas"
                   />
+                  <span id="brandError" class="text-danger"></span>
                 </div>
               </div>
             </div>
@@ -1024,7 +1026,7 @@
         </div>
       </div>
     </div>
-
+  <script th:src="@{/js/validation.js}"></script>
     <th:block th:include="/_footer-admin"></th:block>
   </body>
 </html>

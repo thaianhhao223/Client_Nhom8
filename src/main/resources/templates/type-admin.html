@@ -817,7 +817,7 @@
                         aria-label="Close"
                 ></button>
             </div>
-            <form th:action="@{type/created}" th:object="${producttypecreate}" method="post">
+            <form th:action="@{type/created}" th:object="${producttypecreate}" method="post" onsubmit="return checkSubmitTypeData()">
                 <div class="modal-body" >
                     <div class="row mb-3">
                         <div class="col-2">
@@ -827,9 +827,11 @@
                             <input th:field="*{name}"
                                    type="text"
                                    class="form-control"
-                                   id="exampleFormControlInput1"
+                                   id="typeName"
+                                   onblur="checkTypeName()"
                                    placeholder="Giày"
                             />
+                            <span id="typeError" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -1026,7 +1028,7 @@
         </div>
     </div>
 </div>
-
+<script th:src="@{/js/validation.js}"></script>
 <th:block th:include="/_footer-admin"></th:block>
 </body>
 </html>

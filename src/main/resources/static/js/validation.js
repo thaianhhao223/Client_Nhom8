@@ -5,6 +5,7 @@ var lastName = document.getElementById('lastName');
 var phone = document.getElementById('phoneNumber');
 var email = document.getElementById('email');
 var address = document.getElementById('address');
+var typeName = document.getElementById('typeName');
 
 function checkSubmitData() {
     if(checkFirstName() && checkLastName() && checkPhone() && checkEmail() && checkAddress()
@@ -14,6 +15,72 @@ function checkSubmitData() {
     else {
         return false;
     }
+}
+
+function checkSubmitTypeData() {
+    if(checkTypeName()
+    ) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+function checkTypeName() {
+    var display = document.getElementById('typeError');
+    if(typeName.value.length === 0) {
+        display.innerHTML = 'Tên không được để trống!';
+        return false;
+    }
+
+    else if (typeName.value.length < 1) {
+        display.innerHTML = 'Tên phải nhiều hơn 1 ký tự!';
+        return false;
+    }
+
+    else if (typeName.value.length > 16) {
+        display.innerHTML = 'Tên không được nhiều hơn 16 ký tự!';
+        return false;
+    }
+
+    else {
+        display.innerHTML = '';
+        return true;
+    }
+    return true;
+}
+
+function checkSubmitBrandData() {
+    if(checkBrandName()
+    ) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+function checkBrandName() {
+    var display = document.getElementById('brandError');
+    if(brandName.value.length === 0) {
+        display.innerHTML = 'Tên thương hiệu không được để trống!';
+        return false;
+    }
+
+    else if (brandName.value.length < 1) {
+        display.innerHTML = 'Tên thương hiệu phải nhiều hơn 1 ký tự!';
+        return false;
+    }
+
+    else if (brandName.value.length > 16) {
+        display.innerHTML = 'Tên thương hiệu không được nhiều hơn 16 ký tự!';
+        return false;
+    }
+
+    else {
+        display.innerHTML = '';
+        return true;
+    }
+    return true;
 }
 
 
