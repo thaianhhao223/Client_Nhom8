@@ -266,6 +266,7 @@ public class AdminController {
 //        model.addAttribute("product",new CreateProduct());
         CreateProductRequest createProductRequest = MappingUtils.mapObject(request,CreateProductRequest.class);
         System.out.println(createProductRequest.toString());
+        productService.createProduct(createProductRequest);
         model.addAttribute("products", productService.getAllProduct(new BasePageAndSortRequest()));
         return "product-admin";
 //        return "product-admin-create";

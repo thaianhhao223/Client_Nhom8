@@ -2,6 +2,9 @@ package com.iuh.clientnhom8.service;
 
 import com.iuh.clientnhom8.base.request.BasePageAndSortRequest;
 import com.iuh.clientnhom8.entity.Product;
+import com.iuh.clientnhom8.entity.ProductType;
+import com.iuh.clientnhom8.model.producttype.CreateProductType;
+import com.iuh.clientnhom8.request.product.CreateProductRequest;
 import com.iuh.clientnhom8.response.ProductListResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -41,5 +44,9 @@ public class ProductService {
     public Product getProductById(String id){
         ResponseEntity<Product> responseEntity = restTemplate.getForEntity(requestUrl + "/find-by-id/" + id, Product.class);
         return responseEntity.getBody();
+    }
+
+    public void createProduct(CreateProductRequest request) {
+        restTemplate.postForEntity(requestUrl+"/save", request, Product.class);
     }
 }
