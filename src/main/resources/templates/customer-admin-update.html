@@ -560,7 +560,7 @@
                 <h6>Cập nhật khách hàng</h6>
                 <!-- <a class="btn bg-gradient-secondary mt-3 w-10" href="modal2.html"></a> -->
               </div>
-              <form th:action="@{updated/{id}(id=${customer.id})}" method="post" enctype="multipart/form-data">
+              <form th:action="@{updated/{id}(id=${customer.id})}" method="post" enctype="multipart/form-data" onsubmit="return checkSubmitDataCustomer()">
                 <div class="card-body px-0 pt-0 pb-2 px-5">
                   <div class="row py-3">
                     <div class="col-3">
@@ -584,29 +584,33 @@
                       <div class="row py-3">
                         <div class="col-4">
                           <div class="mb-4">
-                            <label for="firstName" class="form-label">Họ</label>
-                            <input th:field="*{firstName}" type="text" class="form-control"
-                                   id="firstName"
+                            <label for="firstNameC" class="form-label">Họ</label>
+                            <input onblur="checkFirstNameC()" th:field="*{firstName}" type="text" class="form-control"
+                                   id="firstNameC"
                                    placeholder="Trần">
+                            <span id="userErrorC" class="text-danger"></span>
                           </div>
                         </div>
                         <div class="col-4">
                           <div class="mb-4">
-                            <label for="lastName" class="form-label">Tên</label>
-                            <input th:field="*{lastName}" type="text" class="form-control" id="lastName" placeholder="Thuận">
+                            <label for="lastNameC" class="form-label">Tên</label>
+                            <input onblur="checkLastNameC()" th:field="*{lastName}" type="text" class="form-control mb-1" id="lastNameC" placeholder="Thuận">
+                            <span id="userLastErrorC" class="text-danger"></span>
                           </div>
                         </div>
                         <div class="col-4">
                           <div class="mb-4">
                             <label for="email" class="form-label">Email</label>
-                            <input th:field="*{email}" type="email" class="form-control" id="email" placeholder="admin@gmail.com">
+                            <input onblur="checkEmail()" th:field="*{email}" type="email" class="form-control" id="email" placeholder="admin@gmail.com">
+                            <span id="emailError" class="text-danger"></span>
                           </div>
                         </div>
 
                         <div class="col-4">
                           <div class="mb-4">
                             <label for="phone" class="form-label">Số điện thoại</label>
-                            <input th:field="*{phoneNumber}" type="tel" class="form-control" id="phone" placeholder="0987999888">
+                            <input onblur="checkPhone()" th:field="*{phoneNumber}" type="tel" class="form-control" id="phone" placeholder="0987999888">
+                            <span id="phoneErrorC" class="text-danger"></span>
                           </div>
                         </div>
                         <div class="col-4">
@@ -629,7 +633,8 @@
                         <div class="col-12">
                           <div class="mb-4">
                             <label for="address" class="form-label">Địa chỉ</label>
-                            <textarea th:field="*{address}" class="form-control" id="address" rows="3"></textarea>
+                            <textarea onblur="checkAddress()" th:field="*{address}" class="form-control" id="address" rows="3"></textarea>
+                            <span id="addressError" class="text-danger"></span>
                           </div>
                         </div>
                         <div class="col-3">
@@ -766,5 +771,6 @@
   </script>
   <script th:src="@{/js/previewImage.js}"></script>
     <th:block th:include="/_footer-admin"></th:block>
+  <script th:src="@{/js/validationCustomer.js}"></script>
   </body>
 </html>

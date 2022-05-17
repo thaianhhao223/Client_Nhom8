@@ -566,7 +566,7 @@
                         <h6>Tạo khách hàng</h6>
                         <!-- <a class="btn bg-gradient-secondary mt-3 w-10" href="modal2.html"></a> -->
                     </div>
-                    <form th:action="@{created}" th:object="${customer}" method="post" enctype="multipart/form-data">
+                    <form onsubmit="return checkSubmitDataCustomer()" th:action="@{created}" th:object="${customer}" method="post" enctype="multipart/form-data" >
                     <div class="card-body px-0 pt-0 pb-2 px-5">
                         <div class="row py-3">
                             <div class="col-3">
@@ -590,29 +590,33 @@
                                 <div class="row py-3">
                                     <div class="col-4">
                                         <div class="mb-4">
-                                            <label for="firstName" class="form-label">Họ</label>
-                                            <input th:field="*{firstName}" type="text" class="form-control"
-                                                   id="firstName"
+                                            <label for="firstNameC" class="form-label">Họ</label>
+                                            <input  onblur="checkFirstNameC()" th:field="*{firstName}" type="text" class="form-control mb-1"
+                                                   id="firstNameC"
                                                    placeholder="Trần">
+                                            <span id="userErrorC" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="mb-4">
-                                            <label for="lastName" class="form-label">Tên</label>
-                                            <input th:field="*{lastName}" type="text" class="form-control" id="lastName" placeholder="Thuận">
+                                            <label for="lastNameC" class="form-label">Tên</label>
+                                            <input th:field="*{lastName}" onblur="checkLastNameC()" type="text" class="form-control mb-1" id="lastNameC" placeholder="Thuận">
+                                            <span id="userLastErrorC" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="mb-4">
                                             <label for="email" class="form-label">Email</label>
-                                            <input th:field="*{email}" type="email" class="form-control" id="email" placeholder="admin@gmail.com">
+                                            <input onblur="checkEmail()" th:field="*{email}" type="email" class="form-control mb-1" id="email" placeholder="admin@gmail.com">
+                                            <span id="emailError" class="text-danger"></span>
                                         </div>
                                     </div>
 
                                     <div class="col-4">
                                         <div class="mb-4">
                                             <label for="phone" class="form-label">Số điện thoại</label>
-                                            <input th:field="*{phoneNumber}" type="tel" class="form-control" id="phone" placeholder="0987999888">
+                                            <input onblur="checkPhone()" th:field="*{phoneNumber}" type="tel" class="form-control mb-1" id="phone" placeholder="0987999888">
+                                            <span id="phoneError" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -635,7 +639,8 @@
                                     <div class="col-12">
                                         <div class="mb-4">
                                             <label for="address" class="form-label">Địa chỉ</label>
-                                            <textarea th:field="*{address}" class="form-control" id="address" rows="3"></textarea>
+                                            <textarea onblur="checkAddress()" th:field="*{address}" class="form-control mb-1" id="address" rows="3"></textarea>
+                                            <span id="addressError" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-3">
@@ -652,15 +657,12 @@
 
                                     </div>
                                     <div class="col-3">
-
-                                        <a >
-                                            <button
+                                            <input
                                                     type="submit"
                                                     class="btn btn-danger form-control"
-                                            >
-                                                Tạo khách hàng
-                                            </button>
-                                        </a>
+                                            value="Tạo khách hàng"
+                                            />
+
                                     </div>
                                 </div>
                             </div>
@@ -773,5 +775,6 @@
 </script>
 <script th:src="@{/js/previewImage.js}"></script>
 <th:block th:include="/_footer-admin"></th:block>
+<script th:src="@{/js/validationCustomer.js}"></script>
 </body>
 </html>
