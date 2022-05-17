@@ -711,7 +711,7 @@
                               />
                             </div>
                             <div class="my-auto">
-                              <h6 class="mb-0 text-sm">Adidas</h6>
+                              <h6 class="mb-0 text-sm" th:text="${tempProduct.name}"></h6>
                             </div>
                           </div>
                         </td>
@@ -719,7 +719,7 @@
                           <p class="text-sm font-weight-bold mb-0" th:text="${tempProduct.price}">VND</p>
                         </td>
                         <td>
-                          <span class="text-xs font-weight-bold" th:text="${tempProduct.name}"></span>
+                          <span class="text-xs font-weight-bold" th:text="${tempProduct.typeName}"></span>
                         </td>
                         <td class="align-middle text-center">
                           <span class="text-xs font-weight-bold" th:text="${tempProduct.stock}"></span>

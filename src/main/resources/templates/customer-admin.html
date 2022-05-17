@@ -646,7 +646,7 @@
                     <tbody th:each="tempCustomer : ${customers}">
                       <tr>
                         <td>
-                          <p class="text-sm font-weight-bold mb-0">1</p>
+                          <p class="text-sm font-weight-bold mb-0" th:text="${tempCustomer.id}">1</p>
                         </td>
                         <td>
                           <p class="text-sm font-weight-bold mb-0" th:text="${tempCustomer.birthDate}">

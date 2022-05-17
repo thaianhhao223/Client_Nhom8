@@ -41,4 +41,22 @@ public class Product {
     public double getAmount() {
         return this.price * (1 - this.percentDiscount);
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", size=" + size +
+                ", stock=" + stock +
+                ", price=" + price +
+                ", percentDiscount=" + percentDiscount +
+                ", type=" + type +
+                ", brand=" + brand +
+                ", urlImageThumnail='" + urlImageThumnail + '\'' +
+                ", listImageDetail=" + listImageDetail +
+                ", status=" + status +
+                '}';
+    }
 }

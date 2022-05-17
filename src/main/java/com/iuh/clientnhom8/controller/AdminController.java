@@ -102,6 +102,8 @@ public class AdminController {
     @GetMapping("/product")
     public String productAdmin(Model model){
         model.addAttribute("products", productService.getAllProduct(new BasePageAndSortRequest()));
+
+        System.out.println("... products" + productService.getAllProduct(new BasePageAndSortRequest()));
         return "product-admin";
     }
 
