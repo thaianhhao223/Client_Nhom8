@@ -6,10 +6,12 @@ import com.iuh.clientnhom8.entity.Product;
 import com.iuh.clientnhom8.entity.ProductBrand;
 import com.iuh.clientnhom8.entity.ProductType;
 import com.iuh.clientnhom8.model.customer.CustomerRequest;
+import com.iuh.clientnhom8.model.product.CreateProduct;
 import com.iuh.clientnhom8.model.productbrand.CreateProductBrand;
 import com.iuh.clientnhom8.model.producttype.CreateProductType;
 import com.iuh.clientnhom8.request.customer.CreateCustomerRequest;
 import com.iuh.clientnhom8.request.customer.UpdateCustomerRequest;
+import com.iuh.clientnhom8.request.product.CreateProductRequest;
 import com.iuh.clientnhom8.service.*;
 
 import com.lowagie.text.DocumentException;
@@ -248,10 +250,27 @@ public class AdminController {
     }
 
     @GetMapping("/product/create")
-    public String createProduct(HttpServletResponse response) throws IOException {
+    public String createProduct(Model model) throws IOException {
+        model.addAttribute("productbrand", productBrandService.getAllProductBrand());
+        model.addAttribute("producttype", productTypeService.getAllProductType());
+        model.addAttribute("product",new CreateProduct());
         return "product-admin-create";
 
     }
+
+    @PostMapping("/product/created")
+    public String createdProduct(@ModelAttribute("product") CreateProduct request, Model model) throws IOException {
+       System.out.println(request.toString());
+//        model.addAttribute("productbrand", productBrandService.getAllProductBrand());
+//        model.addAttribute("producttype", productTypeService.getAllProductType());
+//        model.addAttribute("product",new CreateProduct());
+        CreateProductRequest createProductRequest = MappingUtils.mapObject(request,CreateProductRequest.class);
+        System.out.println(createProductRequest.toString());
+        model.addAttribute("products", productService.getAllProduct(new BasePageAndSortRequest()));
+        return "product-admin";
+//        return "product-admin-create";
+    }
+
     @GetMapping("/product/update")
     public String updateProduct(HttpServletResponse response) throws IOException {
         return "product-admin-update";

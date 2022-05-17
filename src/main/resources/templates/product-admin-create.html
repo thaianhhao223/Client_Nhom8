@@ -570,9 +570,9 @@
 <!--                </div>-->
 <!--              </div>-->
 <!--
-<!--              <div class="row mb-3">-->
-<!--                <div class="col-2">-->
-<!--                  <p>Mô tả</p>-->
+              <div class="row mb-3">
+                <div class="col-2">
+                  <p>Mô tả</p>-->
 <!--                </div>-->
 <!--                <div class="col-10">-->
 <!--                <textarea-->
@@ -605,145 +605,151 @@
 <!--                </div>-->
 <!--              </div>-->
 <!--
-<!--              <div class="row mb-3">-->
+              <div class="row mb-3">-->
 <!--                <div class="col-2">-->
 <!--                  <p>Giá</p>-->
 <!--                </div>-->
 <!--                <div class="col-10">-->
 <!--
-<!--                </div>-->
+                </div>-->
 <!--              </div>-->
+              <form th:action="@{created}" th:object="${product}" method="post" enctype="multipart/form-data">
+                <div class="card-body px-0 pt-0 pb-2 px-5">
+                  <div class="row py-3">
+                    <div class="col-4">
+                      <div class="mb-3">
+                        <label for="nameProduct" class="form-label">Tên SP</label>
+                        <input  th:field="*{name}"
+                                type="text"
+                                class="form-control"
+                                id="nameProduct"
+                                placeholder="Giày Adidas"/>
+                      </div>
+                    </div>
+                    <div class="col-2">
+                      <div class="mb-3">
+                        <label for="price" class="form-label">Giá</label>
+                        <input th:field="*{price}"
+                                type="number"
+                                class="form-control"
+                                id="price"
+                                placeholder="1"/>
+                      </div>
+                    </div>
+                    <div class="col-2">
+                      <div class="mb-3">
+                        <label for="size" class="form-label">Size</label>
+                        <input th:field="*{size}"
+                                type="number"
+                                class="form-control"
+                                id="size"
+                                placeholder="1"/>
+                      </div>
+                    </div>
+                    <div class="col-2">
+                      <div class="mb-3">
+                        <label for="stock" class="form-label">Số lượng tồn</label>
+                        <input  th:field="*{stock}"
+                                type="number"
+                                class="form-control"
+                                id="stock"
+                                placeholder="100"/>
+                      </div>
+                    </div>
+                    <div class="col-2">
+                      <div class="mb-3">
+                        <label for="percentDiscount" class="form-label">Giảm giá</label>
+                        <input  th:field="*{percentDiscount}"
+                                type="number"
+                                class="form-control"
+                                id="percentDiscount"
+                                placeholder="10%"/>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="mb-3">
+                        <label class="form-label">Loại SP</label>
+                        <select th:field="*{typeId}" class="form-select cursor-pointer">
+                          <div th:each="tempProductType : ${producttype}">
+                            <option  selected="selected" th:value="${tempProductType.id}" th:text="${tempProductType.name}">Giày</option>
+                          </div>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-2">
+                      <div class="mb-3">
+                        <label class="form-label">Thương hiệu</label>
+                        <select th:field="*{brandId}" class="form-select cursor-pointer">
+                            <div th:each="tempProductBrand : ${productbrand}">
+                              <option selected="selected" th:value="${tempProductBrand.id}" th:text="${tempProductBrand.name}">Nikes</option>
+                            </div>
 
-              <div class="card-body px-0 pt-0 pb-2 px-5">
-                <div class="row py-3">
-                  <div class="col-4">
-                    <div class="mb-3">
-                      <label for="nameProduct" class="form-label">Tên SP</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="nameProduct"
-                        placeholder="Giày Adidas"/>
+                          <!--                        <option >Adidas</option>-->
+                        </select>
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-2">
-                    <div class="mb-3">
-                      <label for="price" class="form-label">Giá</label>
-                      <input
-                              type="text"
-                              class="form-control"
-                              id="price"
-                              placeholder="1"/>
+                    <div class="col-2">
+                      <div class="mb-3">
+                        <label for="fileThumbnail" class="form-label">Ảnh Thumbnail</label>
+                        <input  th:field="*{urlImageThumnail}"
+                                type="file"
+                                class="form-control"
+                                id="fileThumbnail"/>
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-2">
-                    <div class="mb-3">
-                      <label for="size" class="form-label">Size</label>
-                      <input
-                        type="number"
-                        class="form-control"
-                        id="size"
-                        placeholder="1"/>
+                    <div class="col-2">
+                      <div class="mb-3">
+                        <label for="fileImageProducts" class="form-label">Danh sách ảnh</label>
+                        <input th:field="*{urlImageThumnail}"
+                                multiple
+                               type="file"
+                               class="form-control"
+                               id="fileImageProducts"/>
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-2">
-                    <div class="mb-3">
-                      <label for="stock" class="form-label">Số lượng tồn</label>
-                      <input
-                          type="number"
-                          class="form-control"
-                          id="stock"
-                          placeholder="100"/>
-                    </div>
-                  </div>
-                  <div class="col-2">
-                    <div class="mb-3">
-                      <label for="percentDiscount" class="form-label">Giảm giá</label>
-                      <input
-                              type="number"
-                              class="form-control"
-                              id="percentDiscount"
-                              placeholder="10%"/>
-                    </div>
-                  </div>
-                  <div class="col-4">
-                    <div class="mb-3">
-                      <label class="form-label">Loại SP</label>
-                      <select class="form-select cursor-pointer">
-                        <option selected>Giày</option>
-                        <option value="1">Dép</option>
-
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-2">
-                    <div class="mb-3">
-                      <label class="form-label">Thương hiệu</label>
-                      <select class="form-select cursor-pointer">
-                        <option selected>Nikes</option>
-                        <option value="1">Adidas</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-2">
-                    <div class="mb-3">
-                      <label for="fileThumbnail" class="form-label">Ảnh Thumbnail</label>
-                      <input
-                              type="file"
-                              class="form-control"
-                              id="fileThumbnail"/>
-                    </div>
-                  </div>
-                  <div class="col-2">
-                    <div class="mb-3">
-                      <label for="fileImageProducts" class="form-label">Danh sách ảnh</label>
-                      <input multiple
-                              type="file"
-                              class="form-control"
-                              id="fileImageProducts"/>
-                    </div>
-                  </div>
-                  <div class="col-2">
-                    <div class="mb-3">
-                      <label for="fileImageProducts" class="form-label">Trạng thái</label>
-                      <select class="form-select cursor-pointer">
-                        <option selected>Đang bán</option>
-                        <option value="1">Không bán</option>
-                      </select>
-                    </div>
-                  </div>
+<!--                    <div class="col-2">-->
+<!--                      <div class="mb-3">-->
+<!--                        <label for="fileImageProducts" class="form-label">Trạng thái</label>-->
+<!--                        <select class="form-select cursor-pointer">-->
+<!--                          <option selected>Đang bán</option>-->
+<!--                          <option value="1">Không bán</option>-->
+<!--                        </select>-->
+<!--                      </div>-->
+<!--                    </div>-->
 
 
-                  <div class="col-12">
-                    <div class="mb-3">
-                      <label for="des" class="form-label">Mô tả</label>
-                      <textarea class="form-control" id="des" rows="3"></textarea>
+                    <div class="col-12">
+                      <div class="mb-3">
+                        <label for="des" class="form-label">Mô tả</label>
+                        <textarea th:field="*{description}" class="form-control" id="des" rows="3"></textarea>
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-4">
-                    <a th:href="@{/admin/product}"><button
-                            type="button"
-                            class="btn btn-secondary form-control"
-                    >
-                      Trờ lại
-                    </button>
-                    </a>
-                  </div>
-                  <div class="col-4">
+                    <div class="col-4">
+                      <a th:href="@{/admin/product}"><button
+                              type="button"
+                              class="btn btn-secondary form-control"
+                      >
+                        Trờ lại
+                      </button>
+                      </a>
+                    </div>
+                    <div class="col-4">
 
-                  </div>
-                  <div class="col-4">
+                    </div>
+                    <div class="col-4">
 
-                    <a th:href="@{/admin/product/created}"><button
-                            type="button"
-                            class="btn btn-danger form-control"
-                    >
-                      TẠO sản phẩm
-                    </button>
-                    </a>
+                      <a th:href="@{/admin/product/created}"><button
+                              type="submit"
+                              class="btn btn-danger form-control"
+                      >
+                        TẠO sản phẩm
+                      </button>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </form>
+
             </div>
           </div>
         </div>

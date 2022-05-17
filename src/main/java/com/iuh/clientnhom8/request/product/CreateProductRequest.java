@@ -2,6 +2,8 @@ package com.iuh.clientnhom8.request.product;
 
 import lombok.*;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @AllArgsConstructor
@@ -9,11 +11,13 @@ import java.util.List;
 @Setter
 @Getter
 @Builder
+@ToString
 public class CreateProductRequest {
     private String name;
     private Integer size;
     private Integer stock; //Số lượng tồn
-    private Long price;
+    private Double price;
+    private String description;
     private Float percentDiscount;
     private String typeId;
     private String brandId;
