@@ -5,6 +5,7 @@ import com.iuh.clientnhom8.entity.Product;
 import com.iuh.clientnhom8.request.LoginAccountRequest;
 import com.iuh.clientnhom8.request.RegisterRequest;
 import com.iuh.clientnhom8.response.LoginInfoResponse;
+import com.iuh.clientnhom8.response.ProductListResponse;
 import com.iuh.clientnhom8.service.AccountService;
 import com.iuh.clientnhom8.service.CustomerService;
 import com.iuh.clientnhom8.service.ProductService;
@@ -45,6 +46,24 @@ public class HomeController {
         List<Product> products = productService.getAllProduct(pageRequest);
         model.addAttribute("products", products);
         return "index";
+    }
+
+    @RequestMapping(value = {"/products"}, method = RequestMethod.GET)
+    public String getAllProduct(HttpServletRequest request, Model model) {
+        int page = 0; //default page number is 0
+        int size = 12; //default page size is 12
+        if (request.getParameter("page") != null && !request.getParameter("page").isEmpty()) {
+            page = Integer.parseInt(request.getParameter("page")) - 1;
+        }
+        if (request.getParameter("size") != null && !request.getParameter("size").isEmpty()) {
+            page = Integer.parseInt(request.getParameter("size"));
+        }
+        BasePageAndSortRequest pageRequest = new BasePageAndSortRequest();
+        pageRequest.setPageSize(size);
+        pageRequest.setPageNumber(page);
+        ProductListResponse products = productService.getProductPage(pageRequest);
+        model.addAttribute("products", products);
+        return "category";
     }
 
     @RequestMapping(value = "/contact",method = RequestMethod.GET)

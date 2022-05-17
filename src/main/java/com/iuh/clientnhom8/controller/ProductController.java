@@ -29,14 +29,7 @@ public class ProductController {
 
     }
 
-    @RequestMapping("/")
-    public String getAllProduct(HttpServletRequest request, Model model, BasePageAndSortRequest basePageAndSortRequest) {
-        List<Product> products = productService.getAllProduct(basePageAndSortRequest);
-        model.addAttribute("products", products);
-        return "index";
-    }
-
-    @RequestMapping(value = {"/category"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/category", "/"}, method = RequestMethod.GET)
     public String getAllProduct(HttpServletRequest request, Model model) {
         int page = 0; //default page number is 0
         int size = 12; //default page size is 12
